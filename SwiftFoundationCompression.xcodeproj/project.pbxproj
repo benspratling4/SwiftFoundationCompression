@@ -13,6 +13,7 @@
 		B5B29E891DACC73E00DBF77B /* GZipDataWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E871DACC5E600DBF77B /* GZipDataWrapping.swift */; };
 		B5B29E8B1DACF83800DBF77B /* GZipHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */; };
 		B5B29E8D1DACF9D700DBF77B /* Package.swift.gz in Resources */ = {isa = PBXBuildFile; fileRef = B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */; };
+		B5B29E8F1DAD48FC00DBF77B /* GunzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */; };
 		_LinkFileRef_SwiftFoundationCompression_via_SwiftFoundationCompressionTests /* SwiftFoundationCompression.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftFoundationCompression" /* SwiftFoundationCompression.framework */; };
 		_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompression /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */; };
 		_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompressionTests /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */; };
@@ -60,6 +61,7 @@
 		B5B29E871DACC5E600DBF77B /* GZipDataWrapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GZipDataWrapping.swift; sourceTree = "<group>"; };
 		B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GZipHeaderTests.swift; sourceTree = "<group>"; };
 		B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = Package.swift.gz; sourceTree = "<group>"; };
+		B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GunzipTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Alert.swift" /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/ChangeSet.swift" /* ChangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSet.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				B5B29E7D1DAC7EC500DBF77B /* Package.swift.zip */,
 				B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */,
 				B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */,
+				B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */,
 			);
 			name = SwiftFoundationCompressionTests;
 			path = Tests/SwiftFoundationCompressionTests;
@@ -336,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				B5B29E8F1DAD48FC00DBF77B /* GunzipTests.swift in Sources */,
 				B5B29E8B1DACF83800DBF77B /* GZipHeaderTests.swift in Sources */,
 				__src_cc_ref_Tests/SwiftFoundationCompressionTests/Compression.swift /* DeflateTests.swift in Sources */,
 				__src_cc_ref_Tests/SwiftFoundationCompressionTests/ZipDirectoryWrappingTests.swift /* ZipDirectoryWrappingTests.swift in Sources */,

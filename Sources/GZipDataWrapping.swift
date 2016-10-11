@@ -26,14 +26,12 @@ public class GZipDataWrapping : DataWrapping {
 		wrapper.preferredFilename = gHeader.filename
 	}
 	
-	/*
+	
 	/// the serializedData will be a .gz file
 	public init(_ dataWrapping:DataWrapping)throws {
-		
-		
+		wrapper = FileWrapper(regularFileWithContents: dataWrapping.contents)
+		wrapper.preferredFilename = dataWrapping.lastPathComponent
 	}
-	*/
-	
 	
 	weak public var parentResourceWrapper:SubResourceWrapping?
 	
@@ -59,8 +57,7 @@ public class GZipDataWrapping : DataWrapping {
 	}
 	
 	public var serializedRepresentation: Data {
-		//TODO: compress
-		fatalError()
+		return (try? gzip(data: wrapper.regularFileContents!, named: wrapper.preferredFilename ?? "")) ?? Data()
 	}
 	
 	fileprivate var wrapper:FileWrapper
@@ -101,7 +98,6 @@ struct GZipHeader {
 		static let hasFileName:Flags = Flags(rawValue:8)
 		static let hasComment:Flags = Flags(rawValue:16)
 	}
-	
 	
 	let flags:Flags
 	let modifiedTime:Date?
@@ -194,12 +190,81 @@ struct GZipHeader {
 	
 }
 
-
-
-
-
-
-
-
+//just like
+func gzip(data:Data, named:String)throws->Data {
+	let chunkSize:Int = memoryPageSize
+	let strategy:Int32 = 0	//default
+	let compressionLevel:Int32 = -1	//default
+	let memoryLevel:Int32 = 8	//how much internal memory is used
+	
+	//do the dual-buffer thing
+	var inBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
+	let inBufferPointer = UnsafeMutableBufferPointer(start: &inBuffer, count: chunkSize)
+	var outBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
+	let outBufferPointer = UnsafeMutableBufferPointer(start: &outBuffer, count: chunkSize)
+	
+	//pre-fill the inBuffer
+	let countInBuffer:Int = Swift.min(chunkSize, data.count)
+	let copiedByteCount:Int = data.copyBytes(to: inBufferPointer, from: 0..<countInBuffer)
+	
+	//init the stream
+	var stream = z_stream(next_in: inBufferPointer.baseAddress,
+	                      avail_in: UInt32(copiedByteCount),
+	                      total_in: 0, next_out: nil, avail_out: 0,
+	                      total_out: 0, msg: nil, state: nil, zalloc: nil,
+	                      zfree: nil, opaque: nil, data_type: 0, adler: 0,
+	                      reserved: 0)
+	let windowBits:Int32 = MAX_WBITS | 16//(method == "gzip") ? MAX_WBITS + 16 : MAX_WBITS
+	let result = deflateInit2_(&stream, compressionLevel, Z_DEFLATED,
+	                           windowBits, memoryLevel, strategy,
+	                           ZLIB_VERSION, Int32(MemoryLayout<z_stream>.size))
+	//check for init errors
+	if result != Z_OK {
+		throw CompressionError.fail(result)
+	}
+	//defer clean up
+	defer {
+		deflateEnd(&stream)
+	}
+	var streamStatus:Int32 = Z_OK
+	
+	let timeDiff:TimeInterval = Date().timeIntervalSince1970.rounded()
+	let time:UInt = UInt(timeDiff)
+	let fileNameData:Data = named.data(using: .isoLatin1) ?? Data()
+	var dataBytes = [UInt8](repeating:0, count:fileNameData.count + 1)
+	let _ = fileNameData.copyBytes(to: UnsafeMutableBufferPointer(start:&dataBytes, count:fileNameData.count))
+	var header:gz_header = gz_header(text: 0, time: time, xflags: 0, os: 0, extra: nil, extra_len: 0, extra_max: 0, name: &dataBytes, name_max: UInt32(fileNameData.count + 1), comment: nil, comm_max: 0, hcrc: 0, done: 0)
+	
+	streamStatus = deflateSetHeader(&stream, &header)
+	if streamStatus != Z_OK {
+		throw CompressionError.fail(streamStatus)
+	}
+	
+	//loop over buffers
+	var outData:Data = Data()
+	
+	while streamStatus == Z_OK {
+		//always provide at least a whole buffer of data
+		let readBytes = Int(stream.total_in)
+		let countInBuffer:Int = Swift.min(chunkSize, data.count - readBytes)
+		let copiedByteCount:Int = data.copyBytes(to: inBufferPointer, from: readBytes..<(readBytes+countInBuffer))
+		stream.next_in = inBufferPointer.baseAddress
+		stream.avail_in = UInt32(copiedByteCount)
+		stream.next_out = outBufferPointer.baseAddress
+		stream.avail_out = UInt32(chunkSize)
+		//actual deflation
+		let previousTotalOut:Int = Int(stream.total_out)
+		streamStatus = CZlib.deflate(&stream, copiedByteCount > 0 ? Z_NO_FLUSH : Z_FINISH)
+		//check for errors
+		if streamStatus != Z_OK && streamStatus != Z_STREAM_END  && streamStatus != Z_BUF_ERROR {
+			throw CompressionError.fail(streamStatus)
+		}
+		//always copy out all written bytes
+		let newOutByteCount:Int = Int(stream.total_out) - previousTotalOut
+		outData.append(&outBuffer, count: newOutByteCount)
+	}
+	
+	return outData
+}
 
 

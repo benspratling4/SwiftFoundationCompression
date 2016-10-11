@@ -20,7 +20,6 @@ open class GZipHeaderTests : XCTestCase {
 		
 		guard let wrapper = try? GZipDataWrapping(compressedData:data) else { return }
 		print(wrapper.header?.filename)
-		
 	}
 	
 	
