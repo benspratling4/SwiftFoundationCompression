@@ -60,7 +60,7 @@ open class FileFormatTest : XCTestCase {
 		let zipURL = bundle.url(forResource: "Package.swift", withExtension: "zip")!
 		let data = try! Data(contentsOf: zipURL)
 		
-		guard let owner = try? ZipFileOwner(data:data) else {
+		guard let owner = try? ZippedDataOwner(data:data) else {
 			XCTAssertTrue(false)	//unable to create
 			return
 		}
@@ -72,7 +72,7 @@ open class FileFormatTest : XCTestCase {
 		let bundle:Bundle = Bundle(for:FileFormatTest.self)
 		let zipURL = bundle.url(forResource: "I Surrender All", withExtension: "mxl")!
 		let data = try! Data(contentsOf: zipURL)
-		guard let owner = try? ZipFileOwner(data:data) else {
+		guard let owner = try? ZippedDataOwner(data:data) else {
 			XCTAssertTrue(false)	//unable to create
 			return
 		}
@@ -101,7 +101,7 @@ open class FileFormatTest : XCTestCase {
 		let bundle:Bundle = Bundle(for:FileFormatTest.self)
 		let zipURL = bundle.url(forResource: "I Surrender All", withExtension: "mxl")!
 		let data = try! Data(contentsOf: zipURL)
-		guard let owner = try? ZipFileOwner(data:data) else {
+		guard let owner = try? ZippedDataOwner(data:data) else {
 			XCTAssertTrue(false)	//unable to create
 			return
 		}

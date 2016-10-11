@@ -10,7 +10,7 @@ import Foundation
 import CZlib	//thanks, IBM!
 
 
-fileprivate let memoryPageSize:Int = 4096
+let memoryPageSize:Int = 4096
 
 /// There are many ways to compress data, use this to pick which one.
 public enum CompressionTechnique {
@@ -21,8 +21,6 @@ public enum CompressionTechnique {
 
 
 extension Data {
-	
-	
 	
 	/// One shot data compression wrapping .zlib functionality
 	/// TODO: add ability to get crc/adler values from the compression
@@ -42,14 +40,6 @@ extension Data {
 			return try inflate(progress:progress)
 		}
 	}
-	
-	/*
-	//TODO: write me
-	/// for stream-like writing to file
-	public func decompress(using technique:CompressionTechnique, appendingTo handle:FileHandle)throws {
-		///TODO: write me
-	}
-	*/
 	
 	/// compresses the receiver into a "deflate" stream, does not provide file headers
 	func deflate(progress:CompressionProgressHandler? = nil)throws->Data {
@@ -117,6 +107,12 @@ extension Data {
 	
 	// decompresses the receiver, assuming it is a "deflate" stream, not the contents of a .zip file, i.e. no local file header
 	func inflate(progress:CompressionProgressHandler? = nil)throws->Data {
+		let pipe = Pipe()
+		try pipe.fileHandleForWriting.writeDecompressed(data: self, using: .deflate, progress: progress)
+		return pipe.fileHandleForReading.readDataToEndOfFile()
+		
+		
+		/*
 		//create the first buffer before initializing the stream... because backwards API's are wonderful :(
 		let chunkSize:Int = memoryPageSize
 		var copyBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
@@ -170,7 +166,7 @@ extension Data {
 				throw CompressionError.canceled
 			}
 		}
-		return outputData
+		return outputData*/
 	}
 	
 	

@@ -10,6 +10,7 @@
 		B5B29E7F1DAC7EDA00DBF77B /* I Surrender All.mxl in Resources */ = {isa = PBXBuildFile; fileRef = B5B29E7C1DAC7EC500DBF77B /* I Surrender All.mxl */; };
 		B5B29E801DAC7EDA00DBF77B /* Package.swift.zip in Resources */ = {isa = PBXBuildFile; fileRef = B5B29E7D1DAC7EC500DBF77B /* Package.swift.zip */; };
 		B5B29E821DACA20B00DBF77B /* TarFileFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E811DACA20B00DBF77B /* TarFileFormat.swift */; };
+		B5B29E851DACB4B100DBF77B /* FileHandle+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E831DACB44100DBF77B /* FileHandle+Compression.swift */; };
 		_LinkFileRef_SwiftFoundationCompression_via_SwiftFoundationCompressionTests /* SwiftFoundationCompression.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftFoundationCompression" /* SwiftFoundationCompression.framework */; };
 		_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompression /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */; };
 		_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompressionTests /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */; };
@@ -54,6 +55,7 @@
 		B5B29E7C1DAC7EC500DBF77B /* I Surrender All.mxl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "I Surrender All.mxl"; sourceTree = "<group>"; };
 		B5B29E7D1DAC7EC500DBF77B /* Package.swift.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Package.swift.zip; sourceTree = "<group>"; };
 		B5B29E811DACA20B00DBF77B /* TarFileFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TarFileFormat.swift; sourceTree = "<group>"; };
+		B5B29E831DACB44100DBF77B /* FileHandle+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileHandle+Compression.swift"; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Alert.swift" /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/ChangeSet.swift" /* ChangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSet.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				"__PBXFileRef_Sources/Data+Compression.swift" /* Data+Compression.swift */,
 				__PBXFileRef_Sources/Errors.swift /* Types.swift */,
 				"__PBXFileRef_Sources/FileManager+Compression.swift" /* FileManager+Compression.swift */,
+				B5B29E831DACB44100DBF77B /* FileHandle+Compression.swift */,
 				__PBXFileRef_Sources/ZipDirectoryWrapping.swift /* ZipDirectoryWrapping.swift */,
 				__PBXFileRef_Sources/ZipFileFormat.swift /* ZipFileFormat.swift */,
 				B5B29E811DACA20B00DBF77B /* TarFileFormat.swift */,
@@ -313,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				B5B29E851DACB4B100DBF77B /* FileHandle+Compression.swift in Sources */,
 				"__src_cc_ref_Sources/Data+Compression.swift" /* Data+Compression.swift in Sources */,
 				__src_cc_ref_Sources/Errors.swift /* Types.swift in Sources */,
 				"__src_cc_ref_Sources/FileManager+Compression.swift" /* FileManager+Compression.swift in Sources */,

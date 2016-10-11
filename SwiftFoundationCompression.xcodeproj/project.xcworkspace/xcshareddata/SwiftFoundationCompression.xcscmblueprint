@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "100CDDC04F7E55D4B4BB60DA5FC985B4385E698B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "597197759961A12265F29537A866A6D71B297FC8" : 9223372036854775807,
+    "100CDDC04F7E55D4B4BB60DA5FC985B4385E698B" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "52C6FEB3-AFD3-4ED0-A78C-11D9595169E0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "597197759961A12265F29537A866A6D71B297FC8" : "SwiftFoundationCompression\/Packages\/SwiftPatterns-1.0.1\/",
+    "100CDDC04F7E55D4B4BB60DA5FC985B4385E698B" : "SwiftFoundationCompression\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftFoundationCompression",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwiftFoundationCompression.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/benspratling4\/SwiftFoundationCompression.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "100CDDC04F7E55D4B4BB60DA5FC985B4385E698B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/benspratling4\/SwiftPatterns.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "597197759961A12265F29537A866A6D71B297FC8"
+    }
+  ]
+}
