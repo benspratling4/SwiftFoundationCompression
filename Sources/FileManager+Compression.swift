@@ -11,14 +11,14 @@ import SwiftPatterns
 
 extension FileManager {
 	
-	/// Given a .zip file, this function unzips all the files it contains into the provided directory, which it creates as necessary.  Any existing files are overwritten if needed.
+	/// Given a .zip-format file, this function unzips all the files it contains into the provided directory, which it creates as necessary.  Any existing files are overwritten if needed.
 	/// The optional `progress` handler provides a normalized progress as a Float32, (0.0...1.0)
 	///	Cancellation of progress is done by setting the progress block's inout Bool to true
 	/// Throws errors when:
 	///		the original file does not exist
 	///		the zlib has an error
 	///		the disk runs out of space
-	public func unzipItem(at zipFile:URL, into directory:URL, progress:CompressionProgressHandler? = nil)throws {
+	public func decompress(item zipFile:URL, with:CompressionTechnique, into directory:URL, progress:CompressionProgressHandler? = nil)throws {
 		//TODO: add progress handling
 		let zipData:Data = try Data(contentsOf: zipFile)
 		let zipWrapper = try ZipDirectoryWrapping(zippedData: zipData)
@@ -47,12 +47,12 @@ extension FileManager {
 	/*
 	/// Given an array of regular file URL's, write them all into a .zip file using the deepest common ancestor as the implied directory into the given `file:URL`.  If it exits, it is overritten.
 	/// Throws errors when any original file does not exist, , if writing to the supplied URL fails, or if there is an internal zlib error
-	public func zip(items:[URL], to file:URL, progress:((Float32, inout Bool)->())? = nil)throws {
+	public func compress(items:[URL], with:CompressionTechnique, to file:URL, progress:CompressionProgressHandler? = nil)throws {
 		//TODO: write me
 	}
 	
 	/// zips a regular file, or a directory and all its contents into a zip file at the given URL
-	public func zipItem(at file:URL, to zippedFile:URL, progress:((Float32, inout Bool)->())? = nil)throws {
+	public func compress(item file:URL, with:CompressionTechnique, to zippedFile:URL, progress:CompressionProgressHandler? = nil)throws {
 		//TODO: write me
 	}
 	

@@ -31,7 +31,7 @@ public class ZipDirectoryWrapping : SubResourceWrapping {
 		lastPathComponent = ""	//Generally, this is a root, and we don't bother with it
 	}
 	/*
-	//TODO: figure out how to map data in from a URL, and read it into memory like a stream
+	//TODO: conform to NSFilePresenter
 	public init?(zipFile:URL) {
 		guard let owner = try? ZippedURLOwner(zipFile: zipFile) else { return nil }
 		underlyingRepresentation = owner.createWrappers()
@@ -144,7 +144,7 @@ class ZipDataWrapping : DataWrapping {
 }
 
 extension ZippedDataOwner {
-	/// iterates files in the data, and creates real directories wrapping ZipFileStandIn
+	/// iterates files in the data, and creates real directories wrapping ZipDataWrapping
 	func createWrappers()->SubResourceWrapping {
 		//iterate through all files, for any non
 		let rootDirectory = DirectoryWrapping(wrappers:[:])
