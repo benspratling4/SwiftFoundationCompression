@@ -4,28 +4,32 @@
 
 This package wraps file & data compression behavior available in zlib with Swift wrappers written to feel at home with the Foundation module.  No `UnsafePointer`s, no file descriptors, no `String` paths.  This behavior is available in 3 levels:
 
-- Working with `Data`.  Behavior is optimized for mapped `Data`.
+- Working with `Data`.  Behavior is designed to work with data small enough to be entirely loaded in RAM, but is optimized to read mapped `Data`.
 
-- Working with files at `URL`s, use the `FileManager` extensions.
+- Working with files at `URL`s, use the `FileManager` extensions.  Methods are provided for compressing a directory into a file
 
-- Representing a .zip or .tar.gz file as an in-ram file/folder structure with `ZipDirectoryWrapping`.  Individual files in the .zip file conform to `DataWrapping`.  For .zip files, each individual file is not decompressed until it is accessed.
+- Representing a .zip or .tar.gz file as an in-ram file/folder structure with `ZipDirectoryWrapping` (similar to a directory `FileWrapper`).  Individual files in the .zip file conform to `DataWrapping` (a SwiftPatterns protocol similar to Foundation's `FileWrapper`).  For .zip files, each individual file is not decompressed until it is accessed.
 
 ## Status
 
 Rudimentary .zip file opening, reading, and inflate have been implemented.  Optimized file writing is not implemented.
 
-No .gzip functions have been implemented.
+.gzip read has been implemented.
 
 ## Data
 
-Compress or uncompress a `Data` with `.compressed()` (or `.decompress()`), optionally choosing to use `.gzip` instead of `.deflate`.
+Compress or uncompress a `Data` with `.compressed(using:progress:)` (or `.decompressed(using:progress:)`), optionally choosing to use `.gzip` instead of `.deflate`.
 
 `Data` compression with .deflate does not generate a header., and decompression works on the stream after the header. 
 `Data` compression with `gzip` generates a header, suitable for wrapping, and requires the wrapper when uncompressing.
 
 ## FileManager
 
-To compress a number of existing files, use `FileManager`.
+To decompress a number of existing files, use `FileManager`.
+
+  func decompress(item:, with:, into:progress:)
+  
+which opens a compressed file and expands its contents into the supplied directory.
 
 ## Compressed on disk / file/folder in RAM
 
