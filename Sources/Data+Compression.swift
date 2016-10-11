@@ -16,13 +16,11 @@ fileprivate let memoryPageSize:Int = 4096
 public enum CompressionTechnique {
 	///The default technique used in .zip files, aka "inflate" for decompression
 	case deflate
-	//If you would like additional techniques, like gzip, or bzip2 or lzma, please request them.
+	//If you would like additional techniques, like lz4, lzfsfzse or lzma, please request them.
 }
 
 
 extension Data {
-	
-	
 	
 	/// One shot data compression wrapping .zlib functionality
 	/// TODO: add ability to get crc/adler values from the compression
@@ -172,6 +170,5 @@ extension Data {
 		}
 		return outputData
 	}
-	
 	
 }

@@ -51,6 +51,16 @@ class DataReader {
 	}
 	
 	
+	func readBytes(count:Int)throws->[UInt8] {
+		var arrayBytes = [UInt8](repeating:0, count:count)
+		arrayBytes.withUnsafeMutableBufferPointer { (bufferPointer) -> () in
+			let _ = data.copyBytes(to: bufferPointer, from: (offset)..<(offset + count))	//TODO: verify the bytes are copied
+		}
+		offset += count
+		return arrayBytes
+	}
+	
+	
 }
 
 
