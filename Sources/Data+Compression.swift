@@ -29,7 +29,7 @@ extension Data {
 	                       progress:CompressionProgressHandler? = nil)throws->Data {
 		switch technique {
 		case .deflate:
-			return try deflate(progress:progress)
+			return try deflate(progress:progress).data
 		case .gzip:
 			return try gzip(progress: progress)
 		}
@@ -55,7 +55,8 @@ extension Data {
 	*/
 	
 	/// compresses the receiver into a "deflate" stream, does not provide file headers
-	func deflate(progress:CompressionProgressHandler? = nil)throws->Data {
+	/// returns the data & crc of the uncompressed data
+	func deflate(progress:CompressionProgressHandler? = nil)throws->(data:Data, crc:UInt32) {
 		
 		let chunkSize:Int = memoryPageSize
 		let strategy:Int32 = 0	//default
@@ -91,6 +92,10 @@ extension Data {
 		defer {
 			deflateEnd(&stream)
 		}
+		//TODO: support crc32
+		var crc:UInt = CZlib.crc32(0, nil, 0)
+		
+		
 		//loop over buffers
 		var outData:Data = Data()
 		var streamStatus:Int32 = Z_OK
@@ -110,12 +115,15 @@ extension Data {
 			if streamStatus != Z_OK && streamStatus != Z_STREAM_END  && streamStatus != Z_BUF_ERROR {
 				throw CompressionError.fail(streamStatus)
 			}
+			let readByteCount:Int = copiedByteCount - Int(stream.avail_in)
+			crc = crc32(crc, inBufferPointer.baseAddress, UInt32(readByteCount))
 			//always copy out all written bytes
 			let newOutByteCount:Int = Int(stream.total_out) - previousTotalOut
 			outData.append(&outBuffer, count: newOutByteCount)
 		}
-		
-		return outData
+		inBuffer = []
+		outBuffer = []
+		return (outData, UInt32(crc))
 	}
 	
 	// decompresses the receiver, assuming it is a "deflate" stream, not the contents of a .zip file, i.e. no local file header

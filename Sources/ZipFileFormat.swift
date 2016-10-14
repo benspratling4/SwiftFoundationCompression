@@ -43,9 +43,14 @@ class DataReader {
 		var fileNameBytes = [UInt8](repeating:0, count:count)
 		fileNameBytes.withUnsafeMutableBufferPointer { (bufferPointer) -> () in
 			//TODO: write loop
-			let _ = data.copyBytes(to: bufferPointer, from: (offset)..<(offset + count))	//TODO: verify the bytes are copied
+			let copiedCount:Int = data.copyBytes(to: bufferPointer, from: (offset)..<(offset + count))	//TODO: verify the bytes are copied
+			if copiedCount != count {
+				print("didn't copy all the bytes")
+			}
 		}
-		guard let name:String =  String(bytes: fileNameBytes, encoding: encoding) else { throw CompressionError.invalidFormat }
+		guard let name:String =  String(bytes: fileNameBytes, encoding: encoding) else {
+			throw CompressionError.invalidFormat
+		}
 		offset += count
 		return name
 	}
@@ -101,7 +106,7 @@ struct EndOfCentralDirectoryRecord {
 		let numberOfThisDisc:UInt16 = try reader.read()
 		let numberOfTheDiscWithCentralDirectory:UInt16 = try reader.read()
 		if numberOfThisDisc != 0 || numberOfTheDiscWithCentralDirectory != 0 {
-			throw CompressionError.unsuppotedFormat
+			throw CompressionError.unsupportedFormat
 		}
 		let numberOfEntries:UInt16 = try reader.read()	//total number of entries in central dir on this disc
 		reader.offset += 2//skip duplicate of above
@@ -304,7 +309,7 @@ class ZippedDataOwner {
 			//TODO: verify if this is correct and we don't need to account for "blocks"
 			return subData
 		default:
-			throw CompressionError.unsuppotedFormat
+			throw CompressionError.unsupportedFormat
 		}
 	}
 	

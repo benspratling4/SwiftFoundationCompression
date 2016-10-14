@@ -85,7 +85,7 @@ extension FileManager {
 	
 	func gzip(item files:[URL], to destination:URL, progress:CompressionProgressHandler? = nil)throws {
 		//In a gzip file, there can only be one
-		guard let oneFile:URL = files.first, files.count == 1 else { throw CompressionError.unsuppotedFormat }
+		guard let oneFile:URL = files.first, files.count == 1 else { throw CompressionError.unsupportedFormat }
 		let fileWrapper = FileWrapping(data: Data(), name: "")	//I should be able to init this from a URL
 		try fileWrapper.read(from: oneFile)
 		let gzipper:GZipDataWrapping = try GZipDataWrapping(fileWrapper)

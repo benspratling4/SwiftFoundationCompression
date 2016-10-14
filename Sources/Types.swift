@@ -15,7 +15,7 @@ public enum CompressionError : Error {
 	
 	/// The file may be a valid format, but is not supported
 	/// Examples include encryption, and compresions other than deflate
-	case unsuppotedFormat
+	case unsupportedFormat
 	
 	case fileNotFound
 	

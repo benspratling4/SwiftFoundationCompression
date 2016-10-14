@@ -82,14 +82,10 @@ public class ZipDirectoryWrapping : SubResourceWrapping {
 	//when writing to a URL, write the zipped data
 	
 	private func createZipFileData()throws->Data {
-		//TODO: write me
-		//iterate through all files:
-		//writing a local header
-		//zipping their data (copying zipped data if encountering a ZipDataWrapping)
-		//collecting a central header and writing it out
-		//appending a end of central dir header
-		
-		fatalError()
+		let dataWriter = ZipDataWriter()
+		try underlyingRepresentation.recursiveCreateZipData(with: dataWriter, pathPrefix: "")
+		try dataWriter.finish()
+		return dataWriter.data
 	}
 	
 	
@@ -167,6 +163,7 @@ extension ZippedDataOwner {
 					continue
 				}
 				let newDir = DirectoryWrapping(wrappers: [:])
+				newDir.lastPathComponent = component
 				dir[component] = newDir
 				dir = newDir
 			}

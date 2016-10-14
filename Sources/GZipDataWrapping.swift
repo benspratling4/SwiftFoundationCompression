@@ -12,7 +12,7 @@ import CZlib
 
 ///the purpose of GZip is to zip a "file", so it makes no sense to use .gzip on Data, it's just deflate with file info wrapped around it
 public class GZipDataWrapping : DataWrapping {
-	//TODO: figure out if a gzip file can contain multiple files, or just one
+	//TODO: official gzip spec says a file can contain multiple files, but all internet pages say only 1.
 	
 	var header:GZipHeader?
 	
@@ -128,7 +128,7 @@ struct GZipHeader {
 		let id2:UInt8 = try reader.read()
 		if id2 != 139 { throw CompressionError.invalidFormat }
 		let compressionMethod:UInt8 = try reader.read()
-		if compressionMethod != 8 { throw CompressionError.unsuppotedFormat }
+		if compressionMethod != 8 { throw CompressionError.unsupportedFormat }
 		//load header info
 		let flagsByte:UInt8 = try reader.read()
 		flags = Flags(rawValue:flagsByte)

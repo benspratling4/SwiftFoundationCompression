@@ -14,6 +14,8 @@
 		B5B29E8B1DACF83800DBF77B /* GZipHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */; };
 		B5B29E8D1DACF9D700DBF77B /* Package.swift.gz in Resources */ = {isa = PBXBuildFile; fileRef = B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */; };
 		B5B29E8F1DAD48FC00DBF77B /* GunzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */; };
+		B5B29E9B1DB0B3EF00DBF77B /* WritingZipFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E9A1DB0B3EF00DBF77B /* WritingZipFiles.swift */; };
+		B5B29E9D1DB0BC1F00DBF77B /* WritingZipFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E9C1DB0BC1F00DBF77B /* WritingZipFiles.swift */; };
 		_LinkFileRef_SwiftFoundationCompression_via_SwiftFoundationCompressionTests /* SwiftFoundationCompression.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftFoundationCompression" /* SwiftFoundationCompression.framework */; };
 		_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompression /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */; };
 		_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompressionTests /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */; };
@@ -62,6 +64,8 @@
 		B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GZipHeaderTests.swift; sourceTree = "<group>"; };
 		B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = Package.swift.gz; sourceTree = "<group>"; };
 		B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GunzipTests.swift; sourceTree = "<group>"; };
+		B5B29E9A1DB0B3EF00DBF77B /* WritingZipFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingZipFiles.swift; sourceTree = "<group>"; };
+		B5B29E9C1DB0BC1F00DBF77B /* WritingZipFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingZipFiles.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Alert.swift" /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/ChangeSet.swift" /* ChangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSet.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 				B5B29E871DACC5E600DBF77B /* GZipDataWrapping.swift */,
 				__PBXFileRef_Sources/ZipDirectoryWrapping.swift /* ZipDirectoryWrapping.swift */,
 				__PBXFileRef_Sources/ZipFileFormat.swift /* ZipFileFormat.swift */,
+				B5B29E9A1DB0B3EF00DBF77B /* WritingZipFiles.swift */,
 				B5B29E811DACA20B00DBF77B /* TarDirectoryWrapper.swift */,
 			);
 			name = SwiftFoundationCompression;
@@ -195,6 +200,7 @@
 				B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */,
 				B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */,
 				B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */,
+				B5B29E9C1DB0BC1F00DBF77B /* WritingZipFiles.swift */,
 			);
 			name = SwiftFoundationCompressionTests;
 			path = Tests/SwiftFoundationCompressionTests;
@@ -329,6 +335,7 @@
 				"__src_cc_ref_Sources/Data+Compression.swift" /* Data+Compression.swift in Sources */,
 				__src_cc_ref_Sources/Errors.swift /* Types.swift in Sources */,
 				"__src_cc_ref_Sources/FileManager+Compression.swift" /* FileManager+Compression.swift in Sources */,
+				B5B29E9B1DB0B3EF00DBF77B /* WritingZipFiles.swift in Sources */,
 				__src_cc_ref_Sources/ZipDirectoryWrapping.swift /* ZipDirectoryWrapping.swift in Sources */,
 				__src_cc_ref_Sources/ZipFileFormat.swift /* ZipFileFormat.swift in Sources */,
 				B5B29E891DACC73E00DBF77B /* GZipDataWrapping.swift in Sources */,
@@ -342,6 +349,7 @@
 				B5B29E8F1DAD48FC00DBF77B /* GunzipTests.swift in Sources */,
 				B5B29E8B1DACF83800DBF77B /* GZipHeaderTests.swift in Sources */,
 				__src_cc_ref_Tests/SwiftFoundationCompressionTests/Compression.swift /* DeflateTests.swift in Sources */,
+				B5B29E9D1DB0BC1F00DBF77B /* WritingZipFiles.swift in Sources */,
 				__src_cc_ref_Tests/SwiftFoundationCompressionTests/ZipDirectoryWrappingTests.swift /* ZipDirectoryWrappingTests.swift in Sources */,
 				B5B29E821DACA20B00DBF77B /* TarDirectoryWrapper.swift in Sources */,
 				__src_cc_ref_Tests/SwiftFoundationCompressionTests/ZipFileFormatTests.swift /* ZipFileFormatTests.swift in Sources */,
