@@ -27,14 +27,54 @@ extension FileManager {
 		}
 	}
 	
-	//  items must exist, item must be a file, which might be overwritten
+	/// items must exist, item must be a file, which might be overwritten
+	/// if using .deflate, either provide many file URL's (supported), or a single directory (TBD)
 	public func compress(items:[URL], using technique:CompressionTechnique, to item:URL, progress:CompressionProgressHandler? = nil)throws {
 		switch technique {
 		case .deflate:
-			fatalError()
+			try zip(items:items, to:item, progress:progress)
 		case .gzip:
 			try gzip(item: items, to: item, progress: progress)
 		}
+	}
+	
+	func zip(items:[URL], to item:URL, progress:CompressionProgressHandler?)throws {
+		//unpack all path components
+		let fullRelativePaths:[[String]] = items.map { (url) -> [String] in
+			return url.pathComponents.filter { $0 != "/" }
+		}
+		
+		let containingDirections:[[String]] = fullRelativePaths.map { (components) -> [String] in
+			return [String](components.dropLast())
+		}
+		
+		//find deepest common parent
+		let commonParentLength:Int = longestCommonPrefix(of: containingDirections).count
+		
+		//get suffixes
+		let suffixes:[[String]] = fullRelativePaths.map { (components) -> [String] in
+			return [String](components.dropFirst(commonParentLength))
+		}
+		
+		//form mappings
+		var mappings:[URL:[String]] = [:]
+		for i in 0..<items.count  {
+			mappings[items[i]] = suffixes[i]
+		}
+		
+		try zip(itemMappings: mappings, to: item, progress: progress)
+	}
+	
+	func zip(itemMappings:[URL:[String]], to destination:URL, progress:CompressionProgressHandler?)throws {
+		//migrate to filehandle writing
+		let writer:ZipDataWriter = ZipDataWriter()
+		
+		for (url, pathComponents) in itemMappings {
+			let data:Data = try Data(contentsOf: url)
+			try writer.compress(data: data, path: pathComponents.joined(separator: "/"))
+		}
+		
+		try writer.data.write(to: destination)
 	}
 	
 	func unzip(item compressedFile:URL, into directory:URL, progress:CompressionProgressHandler? = nil)throws->[URL] {
@@ -66,7 +106,6 @@ extension FileManager {
 		return writtenURLs
 	}
 	
-	
 	func gunzip(item compressedFile:URL, into directory:URL, progress:CompressionProgressHandler? = nil)throws->[URL] {
 		let gzipData:Data = try Data(contentsOf: compressedFile)
 		let gzipper:GZipDataWrapping = try GZipDataWrapping(compressedData:gzipData)
@@ -94,3 +133,23 @@ extension FileManager {
 	
 }
 
+func longestCommonPrefix(of items:[[String]])->[String] {
+	guard var longestCommonPrefix:[String] = items.first else { return [] }
+	//there must be more than
+	byItem: for item in items {
+		//compare the first x elements
+		let firstCount:Int = longestCommonPrefix.count
+		let secondCount:Int = item.count
+		let possibleElementCount:Int = min(firstCount, secondCount)
+		if possibleElementCount < longestCommonPrefix.count {
+			longestCommonPrefix = [String](longestCommonPrefix.prefix(through:possibleElementCount))
+		}
+		for i in 0 ..< possibleElementCount {
+			if item[i] != longestCommonPrefix[i] {
+				longestCommonPrefix = [String](longestCommonPrefix.prefix(upTo: i))
+				continue byItem
+			}
+		}
+	}
+	return longestCommonPrefix
+}
