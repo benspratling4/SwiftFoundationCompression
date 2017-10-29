@@ -13,17 +13,27 @@ import XCTest
 
 open class FileFormatTest : XCTestCase {
 	
-	open func testDiscoverAZipFile() {
+	func fileInTestSource(named:String, withExtension:String)->URL {
+		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "Package.swift", withExtension: "zip")!
+		if let zipURL = bundle.url(forResource: named, withExtension: withExtension) {
+			return zipURL
+		}
+			#endif
+		let path = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+		return path.appendingPathComponent("Tests").appendingPathComponent("SwiftFoundationCompressionTests").appendingPathComponent(named + "." + withExtension)
+	}
+	
+	open func testDiscoverAZipFile() {
+		let zipURL = fileInTestSource(named:"Package.swift", withExtension: "zip")
 		let data = try! Data(contentsOf: zipURL)
 		let index = EndOfCentralDirectoryRecord.offsetToStart(in: data)
 		XCTAssertEqual(index, 721)
 	}
 	
 	open func testCreateEndOfCentralDirectoryRecord() {
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "Package.swift", withExtension: "zip")!
+		//let bundle:Bundle = Bundle(for:FileFormatTest.self)
+		let zipURL = fileInTestSource(named: "Package.swift", withExtension: "zip")
 		let data = try! Data(contentsOf: zipURL)
 		guard let eocd = try? EndOfCentralDirectoryRecord(data:data) else {
 			XCTAssertTrue(false)
@@ -33,8 +43,7 @@ open class FileFormatTest : XCTestCase {
 	}
 	
 	open func testAllCentralDirectoryEntries() {
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "Package.swift", withExtension: "zip")!
+		let zipURL = fileInTestSource(named: "Package.swift", withExtension: "zip")
 		let data = try! Data(contentsOf: zipURL)
 		guard let eocd = try? EndOfCentralDirectoryRecord(data:data) else {
 			XCTAssertTrue(false)
@@ -56,8 +65,7 @@ open class FileFormatTest : XCTestCase {
 	}
 	
 	open func testZipOwnerCreation() {
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "Package.swift", withExtension: "zip")!
+		let zipURL = fileInTestSource(named: "Package.swift", withExtension: "zip")
 		let data = try! Data(contentsOf: zipURL)
 		
 		guard let owner = try? ZippedDataOwner(data:data) else {
@@ -69,8 +77,7 @@ open class FileFormatTest : XCTestCase {
 	}
 	
 	open func testDeflateMusicXML() {
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "I Surrender All", withExtension: "mxl")!
+		let zipURL = fileInTestSource(named: "I Surrender All", withExtension: "mxl")
 		let data = try! Data(contentsOf: zipURL)
 		guard let owner = try? ZippedDataOwner(data:data) else {
 			XCTAssertTrue(false)	//unable to create
@@ -98,8 +105,7 @@ open class FileFormatTest : XCTestCase {
 	}
 	
 	open func testOpenMusicXML() {
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "I Surrender All", withExtension: "mxl")!
+		let zipURL = fileInTestSource(named: "I Surrender All", withExtension: "mxl")
 		let data = try! Data(contentsOf: zipURL)
 		guard let owner = try? ZippedDataOwner(data:data) else {
 			XCTAssertTrue(false)	//unable to create
@@ -125,5 +131,16 @@ open class FileFormatTest : XCTestCase {
 		//asert something about the file
 		//XCTAssertEqual(owner.centralDirectoryEntries.count, 3)
 	}
+	
+	
+	
+	static var allTests = [
+		("testOpenMusicXML",testOpenMusicXML),
+		("testDeflateMusicXML",testDeflateMusicXML),
+		("testZipOwnerCreation",testZipOwnerCreation),
+		("testDiscoverAZipFile",testDiscoverAZipFile),
+		("testCreateEndOfCentralDirectoryRecord",testCreateEndOfCentralDirectoryRecord),
+		("testAllCentralDirectoryEntries",testAllCentralDirectoryEntries),
+		]
 	
 }

@@ -1,9 +1,24 @@
+// swift-tools-version:4.0
 import PackageDescription
 let package = Package(
 	name: "SwiftFoundationCompression",
-	targets: [],
+	products: [
+		.library(
+			name: "SwiftFoundationCompression",
+			targets: ["SwiftFoundationCompression"]),
+		],
 	dependencies: [
-		.Package(url: "https://github.com/IBM-Swift/CZlib.git", majorVersion: 0, minor: 1)
-		,.Package(url: "https://github.com/benspratling4/SwiftPatterns.git", majorVersion: 1, minor: 0)
-	]
+		.package(url: "https://github.com/IBM-Swift/CZlib.git", from:"0.1.2"),
+		.package(url: "https://github.com/benspratling4/SwiftPatterns.git", from:"2.1.0"),
+	],
+	targets:[
+		.target(
+			name: "SwiftFoundationCompression",
+			dependencies: ["SwiftPatterns", "CZlib"]),
+		.testTarget(
+			name: "SwiftFoundationCompressionTests",
+			dependencies: ["SwiftFoundationCompression"]),
+		],
+	swiftLanguageVersions:[4]
 )
+

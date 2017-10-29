@@ -13,14 +13,28 @@ import XCTest
 
 open class GZipHeaderTests : XCTestCase {
 	
-	func testHeaderRead() {
+	func fileInTestSource(named:String, withExtension:String)->URL {
+		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "Package.swift", withExtension: "gz")!
+		if let zipURL = bundle.url(forResource: named, withExtension: withExtension) {
+			return zipURL
+		}
+		#endif
+		let path = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+		return path.appendingPathComponent("Tests").appendingPathComponent("SwiftFoundationCompressionTests").appendingPathComponent(named + "." + withExtension)
+	}
+	
+	func testHeaderRead() {
+		let zipURL = fileInTestSource(named: "Package.swift", withExtension: "gz")
 		let data = try! Data(contentsOf: zipURL)
 		
 		guard let wrapper = try? GZipDataWrapping(compressedData:data) else { return }
 		print(wrapper.header?.filename)
 	}
 	
+	
+	static var allTests = [
+		("testHeaderRead",testHeaderRead),
+		]
 	
 }

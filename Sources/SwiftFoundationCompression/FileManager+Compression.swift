@@ -9,6 +9,14 @@
 import Foundation
 import SwiftPatterns
 
+#if !os(macOS) && !os(iOS) && !os(tvOS) && !os(watchOS)
+extension Bool {
+	fileprivate var boolValue:Bool {
+		return self
+	}
+}
+#endif
+
 extension FileManager {
 	
 	/// Given a .zip-format file, this function unzips all the files it contains into the provided directory, which it creates as necessary.  Any existing files are overwritten if needed.
@@ -128,7 +136,7 @@ extension FileManager {
 		let fileWrapper = FileWrapping(data: Data(), name: "")	//I should be able to init this from a URL
 		try fileWrapper.read(from: oneFile)
 		let gzipper:GZipDataWrapping = try GZipDataWrapping(fileWrapper)
-		try gzipper.serializedRepresentation.write(to: destination, options: [.atomicWrite])
+		try gzipper.serializedRepresentation.write(to: destination, options: [.atomic])
 	}
 	
 }

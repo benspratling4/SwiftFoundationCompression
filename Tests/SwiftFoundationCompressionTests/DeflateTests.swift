@@ -29,4 +29,10 @@ class DeflateTests : XCTestCase {
 		}
 	}
 	
+	
+	static var allTests = [
+		("testCompression",testCompression),
+		("testRoundTrip",testRoundTrip),
+		]
+	
 }

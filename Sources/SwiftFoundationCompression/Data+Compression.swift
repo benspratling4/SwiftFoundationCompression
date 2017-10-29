@@ -57,6 +57,15 @@ extension Data {
 	/// compresses the receiver into a "deflate" stream, does not provide file headers
 	/// returns the data & crc of the uncompressed data
 	func deflate(progress:CompressionProgressHandler? = nil)throws->(data:Data, crc:UInt32) {
+		var data:Data = Data()
+		let crc:UInt32 = try deflate(accumulator: { (pointer, newByteCount) in
+			data.append(pointer, count: newByteCount)
+		}, progress: progress)
+		return (data, crc)
+	}
+	
+	///returns the CRC, the accumulator is called when uncompressed bytes are available, with the count of the bytes
+	func deflate(accumulator:(UnsafePointer<UInt8>, Int)->(), progress:CompressionProgressHandler? = nil)throws->UInt32 {
 		
 		let chunkSize:Int = memoryPageSize
 		let strategy:Int32 = 0	//default
@@ -64,10 +73,15 @@ extension Data {
 		let memoryLevel:Int32 = 8	//how much internal memory is used
 		
 		//do the dual-buffer thing
-		var inBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-		let inBufferPointer = UnsafeMutableBufferPointer(start: &inBuffer, count: chunkSize)
-		var outBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-		let outBufferPointer = UnsafeMutableBufferPointer(start: &outBuffer, count: chunkSize)
+		let inBufferMemory:UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: chunkSize)
+		defer {
+			inBufferMemory.deallocate(capacity: chunkSize)
+		}
+		let inBufferPointer = UnsafeMutableBufferPointer(start: inBufferMemory, count: chunkSize)
+		let outBufferMemory:UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: chunkSize)
+		defer {
+			outBufferMemory.deallocate(capacity: chunkSize)
+		}
 		
 		//pre-fill the inBuffer
 		let countInBuffer:Int = Swift.min(chunkSize, self.count)
@@ -95,9 +109,7 @@ extension Data {
 		//TODO: support crc32
 		var crc:UInt = CZlib.crc32(0, nil, 0)
 		
-		
 		//loop over buffers
-		var outData:Data = Data()
 		var streamStatus:Int32 = Z_OK
 		while streamStatus == Z_OK {
 			//always provide at least a whole buffer of data
@@ -106,7 +118,7 @@ extension Data {
 			let copiedByteCount:Int = self.copyBytes(to: inBufferPointer, from: readBytes..<(readBytes+countInBuffer))
 			stream.next_in = inBufferPointer.baseAddress
 			stream.avail_in = UInt32(copiedByteCount)
-			stream.next_out = outBufferPointer.baseAddress
+			stream.next_out = outBufferMemory
 			stream.avail_out = UInt32(chunkSize)
 			//actual deflation
 			let previousTotalOut:Int = Int(stream.total_out)
@@ -119,12 +131,12 @@ extension Data {
 			crc = crc32(crc, inBufferPointer.baseAddress, UInt32(readByteCount))
 			//always copy out all written bytes
 			let newOutByteCount:Int = Int(stream.total_out) - previousTotalOut
-			outData.append(&outBuffer, count: newOutByteCount)
+			accumulator(outBufferMemory, newOutByteCount)
 		}
-		inBuffer = []
-		outBuffer = []
-		return (outData, UInt32(crc))
+		return UInt32(crc)
 	}
+	
+	
 	
 	// decompresses the receiver, assuming it is a "deflate" stream, not the contents of a .zip file, i.e. no local file header
 	func inflate(progress:CompressionProgressHandler? = nil)throws->Data {

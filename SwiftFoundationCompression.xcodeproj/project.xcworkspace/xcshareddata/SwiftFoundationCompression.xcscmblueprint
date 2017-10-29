@@ -9,7 +9,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "52C6FEB3-AFD3-4ED0-A78C-11D9595169E0",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "597197759961A12265F29537A866A6D71B297FC8" : "SwiftFoundationCompression\/Packages\/SwiftPatterns-1.0.1\/",
+    "597197759961A12265F29537A866A6D71B297FC8" : "SwiftFoundationCompression\/Packages\/SwiftPatterns-1.0.3\/",
     "100CDDC04F7E55D4B4BB60DA5FC985B4385E698B" : "SwiftFoundationCompression\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftFoundationCompression",

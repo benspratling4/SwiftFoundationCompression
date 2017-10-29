@@ -21,62 +21,55 @@ public class GZipDataWrapping : DataWrapping {
 		let gHeader = try GZipHeader(data: compressedData)
 		header = gHeader
 		let subData:Data = compressedData.subdata(in:gHeader.offsetToCompressedData..<compressedData.count)
-		let decompressed = try subData.decompressed(using: .deflate)
-		wrapper = FileWrapper(regularFileWithContents: decompressed)
-		wrapper.preferredFilename = gHeader.filename
+		let decompressed:Data = try subData.decompressed(using: .deflate)
+		wrapper = FileWrapping(data: decompressed, name: gHeader.filename ?? "")
 	}
 	
 	
 	/// the serializedData will be a .gz file
 	public init(_ dataWrapping:DataWrapping)throws {
-		wrapper = FileWrapper(regularFileWithContents: dataWrapping.contents)
-		wrapper.preferredFilename = dataWrapping.lastPathComponent
+		wrapper = dataWrapping
 	}
 	
 	weak public var parentResourceWrapper:SubResourceWrapping?
 	
 	public var lastPathComponent: String {
 		get {
-			return wrapper.preferredFilename ?? ""
+			return wrapper.lastPathComponent
 		}
 		set {
 			parentResourceWrapper?.child(named: lastPathComponent, changedNameTo: newValue)
-			wrapper.preferredFilename = newValue
+			wrapper.lastPathComponent = lastPathComponent
 		}
 	}
 	
 	public var contents: Data {
 		get {
-			return wrapper.regularFileContents ?? Data()
+			return wrapper.contents
 		}
 		set {
-			let newWrapper = FileWrapper(regularFileWithContents:newValue)
-			newWrapper.preferredFilename = wrapper.preferredFilename
-			wrapper = newWrapper
+			wrapper = FileWrapping(data: newValue, name: lastPathComponent)
 		}
 	}
 	
 	public var serializedRepresentation: Data {
-		return (try? gzip(data: wrapper.regularFileContents!, named: wrapper.preferredFilename ?? "")) ?? Data()
+		return (try? gzip(data: wrapper.contents, named: wrapper.lastPathComponent)) ?? Data()
 	}
 	
-	fileprivate var wrapper:FileWrapper
+	fileprivate var wrapper:DataWrapping
 	
 	
-	private init(regularFileWrapper:FileWrapper) {
+	private init(regularFileWrapper:DataWrapping) {
 		self.wrapper = regularFileWrapper
 	}
 
 	
-	///returns nil if the file wrapper is not a regular file
-	public convenience init?(wrapper:FileWrapper) {
-		if !wrapper.isRegularFile { return nil }
+	public convenience init?(wrapper:DataWrapping) {
 		self.init(regularFileWrapper:wrapper)
 	}
 	
 	public convenience init(data:Data, name:String) {
-		let wrapper = FileWrapper(regularFileWithContents:data)
-		wrapper.preferredFilename = name
+		let wrapper = FileWrapping(data:data, name:name)
 		self.init(wrapper:wrapper)!
 	}
 	

@@ -6,277 +6,336 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		"CZlib::CZlib::ProductTarget" /* CZlib */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_114 /* Build configuration list for PBXAggregateTarget "CZlib" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = CZlib;
+			productName = CZlib;
+		};
+		"SwiftFoundationCompression::SwiftFoundationCompressionPackageTests::ProductTarget" /* SwiftFoundationCompressionPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_109 /* Build configuration list for PBXAggregateTarget "SwiftFoundationCompressionPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_112 /* PBXTargetDependency */,
+			);
+			name = SwiftFoundationCompressionPackageTests;
+			productName = SwiftFoundationCompressionPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		B5B29E7F1DAC7EDA00DBF77B /* I Surrender All.mxl in Resources */ = {isa = PBXBuildFile; fileRef = B5B29E7C1DAC7EC500DBF77B /* I Surrender All.mxl */; };
-		B5B29E801DAC7EDA00DBF77B /* Package.swift.zip in Resources */ = {isa = PBXBuildFile; fileRef = B5B29E7D1DAC7EC500DBF77B /* Package.swift.zip */; };
-		B5B29E821DACA20B00DBF77B /* TarDirectoryWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E811DACA20B00DBF77B /* TarDirectoryWrapper.swift */; };
-		B5B29E891DACC73E00DBF77B /* GZipDataWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E871DACC5E600DBF77B /* GZipDataWrapping.swift */; };
-		B5B29E8B1DACF83800DBF77B /* GZipHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */; };
-		B5B29E8D1DACF9D700DBF77B /* Package.swift.gz in Resources */ = {isa = PBXBuildFile; fileRef = B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */; };
-		B5B29E8F1DAD48FC00DBF77B /* GunzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */; };
-		B5B29E9B1DB0B3EF00DBF77B /* WritingZipFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E9A1DB0B3EF00DBF77B /* WritingZipFiles.swift */; };
-		B5B29E9D1DB0BC1F00DBF77B /* WritingZipFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29E9C1DB0BC1F00DBF77B /* WritingZipFiles.swift */; };
-		_LinkFileRef_SwiftFoundationCompression_via_SwiftFoundationCompressionTests /* SwiftFoundationCompression.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftFoundationCompression" /* SwiftFoundationCompression.framework */; };
-		_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompression /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */; };
-		_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompressionTests /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/Alert.swift" /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Alert.swift" /* Alert.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/ChangeSet.swift" /* ChangeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/ChangeSet.swift" /* ChangeSet.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/DataExtraction.swift" /* DataExtraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/DataExtraction.swift" /* DataExtraction.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/DirectoryMonitor.swift" /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/DirectoryMonitor.swift" /* DirectoryMonitor.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/Math.swift" /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Math.swift" /* Math.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/MediatedAccess.swift" /* MediatedAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/MediatedAccess.swift" /* MediatedAccess.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/NonNilArrayFilter.swift" /* NonNilArrayFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/NonNilArrayFilter.swift" /* NonNilArrayFilter.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/QueuedVar.swift" /* QueuedVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/QueuedVar.swift" /* QueuedVar.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/SerializedResourceWrapping.swift" /* SerializedResourceWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/SerializedResourceWrapping.swift" /* SerializedResourceWrapping.swift */; };
-		"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/URL+ExtendedAttributes.swift" /* URL+ExtendedAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/URL+ExtendedAttributes.swift" /* URL+ExtendedAttributes.swift */; };
-		"__src_cc_ref_Sources/Data+Compression.swift" /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/Data+Compression.swift" /* Data+Compression.swift */; };
-		__src_cc_ref_Sources/Errors.swift /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Errors.swift /* Types.swift */; };
-		"__src_cc_ref_Sources/FileManager+Compression.swift" /* FileManager+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Sources/FileManager+Compression.swift" /* FileManager+Compression.swift */; };
-		__src_cc_ref_Sources/ZipDirectoryWrapping.swift /* ZipDirectoryWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/ZipDirectoryWrapping.swift /* ZipDirectoryWrapping.swift */; };
-		__src_cc_ref_Sources/ZipFileFormat.swift /* ZipFileFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/ZipFileFormat.swift /* ZipFileFormat.swift */; };
-		__src_cc_ref_Tests/SwiftFoundationCompressionTests/Compression.swift /* DeflateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftFoundationCompressionTests/Compression.swift /* DeflateTests.swift */; };
-		__src_cc_ref_Tests/SwiftFoundationCompressionTests/ZipDirectoryWrappingTests.swift /* ZipDirectoryWrappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftFoundationCompressionTests/ZipDirectoryWrappingTests.swift /* ZipDirectoryWrappingTests.swift */; };
-		__src_cc_ref_Tests/SwiftFoundationCompressionTests/ZipFileFormatTests.swift /* ZipFileFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftFoundationCompressionTests/ZipFileFormatTests.swift /* ZipFileFormatTests.swift */; };
+		OBJ_100 /* LogSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* LogSearch.swift */; };
+		OBJ_101 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* Math.swift */; };
+		OBJ_102 /* MediatedAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* MediatedAccess.swift */; };
+		OBJ_103 /* QueuedVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* QueuedVar.swift */; };
+		OBJ_104 /* SerializedResourceWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* SerializedResourceWrapping.swift */; };
+		OBJ_105 /* URL+ExtendedAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* URL+ExtendedAttributes.swift */; };
+		OBJ_106 /* XMLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* XMLItem.swift */; };
+		OBJ_51 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_57 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Package.swift */; };
+		OBJ_63 /* DeflateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* DeflateTests.swift */; };
+		OBJ_64 /* GZipHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* GZipHeaderTests.swift */; };
+		OBJ_65 /* GunzipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* GunzipTests.swift */; };
+		OBJ_66 /* WritingZipFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* WritingZipFiles.swift */; };
+		OBJ_67 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* XCTestManifests.swift */; };
+		OBJ_68 /* ZipDirectoryWrappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* ZipDirectoryWrappingTests.swift */; };
+		OBJ_69 /* ZipFileFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* ZipFileFormatTests.swift */; };
+		OBJ_71 /* SwiftFoundationCompression.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftFoundationCompression::SwiftFoundationCompression::Product" /* SwiftFoundationCompression.framework */; };
+		OBJ_72 /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPatterns::SwiftPatterns::Product" /* SwiftPatterns.framework */; };
+		OBJ_81 /* Data+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Data+Compression.swift */; };
+		OBJ_82 /* FileManager+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* FileManager+Compression.swift */; };
+		OBJ_83 /* GZipDataWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* GZipDataWrapping.swift */; };
+		OBJ_84 /* TarDirectoryWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* TarDirectoryWrapper.swift */; };
+		OBJ_85 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Types.swift */; };
+		OBJ_86 /* WritingZipFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* WritingZipFiles.swift */; };
+		OBJ_87 /* ZipDirectoryWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* ZipDirectoryWrapping.swift */; };
+		OBJ_88 /* ZipFileFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* ZipFileFormat.swift */; };
+		OBJ_90 /* SwiftPatterns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftPatterns::SwiftPatterns::Product" /* SwiftPatterns.framework */; };
+		OBJ_96 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Alert.swift */; };
+		OBJ_97 /* ChangeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* ChangeSet.swift */; };
+		OBJ_98 /* DataExtraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* DataExtraction.swift */; };
+		OBJ_99 /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* DirectoryMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B5B29E7A1DAC7CF700DBF77B /* PBXContainerItemProxy */ = {
+		B5CA096F1F9F5FC300D60D80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = __RootObject_ /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "______Target_SwiftPatterns";
+			remoteGlobalIDString = "SwiftPatterns::SwiftPatterns";
 			remoteInfo = SwiftPatterns;
 		};
-		B5B29E7B1DAC7CF700DBF77B /* PBXContainerItemProxy */ = {
+		B5CA09701F9F5FC300D60D80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = __RootObject_ /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = "______Target_SwiftFoundationCompression";
+			remoteGlobalIDString = "SwiftFoundationCompression::SwiftFoundationCompression";
 			remoteInfo = SwiftFoundationCompression;
+		};
+		B5CA09711F9F5FC300D60D80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftPatterns::SwiftPatterns";
+			remoteInfo = SwiftPatterns;
+		};
+		B5CA09721F9F5FC400D60D80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftFoundationCompression::SwiftFoundationCompressionTests";
+			remoteInfo = SwiftFoundationCompressionTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B5B29E7C1DAC7EC500DBF77B /* I Surrender All.mxl */ = {isa = PBXFileReference; lastKnownFileType = file; path = "I Surrender All.mxl"; sourceTree = "<group>"; };
-		B5B29E7D1DAC7EC500DBF77B /* Package.swift.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Package.swift.zip; sourceTree = "<group>"; };
-		B5B29E811DACA20B00DBF77B /* TarDirectoryWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TarDirectoryWrapper.swift; sourceTree = "<group>"; };
-		B5B29E871DACC5E600DBF77B /* GZipDataWrapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GZipDataWrapping.swift; sourceTree = "<group>"; };
-		B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GZipHeaderTests.swift; sourceTree = "<group>"; };
-		B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = Package.swift.gz; sourceTree = "<group>"; };
-		B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GunzipTests.swift; sourceTree = "<group>"; };
-		B5B29E9A1DB0B3EF00DBF77B /* WritingZipFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingZipFiles.swift; sourceTree = "<group>"; };
-		B5B29E9C1DB0BC1F00DBF77B /* WritingZipFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingZipFiles.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Alert.swift" /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/ChangeSet.swift" /* ChangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSet.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/DataExtraction.swift" /* DataExtraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtraction.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/DirectoryMonitor.swift" /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Math.swift" /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/MediatedAccess.swift" /* MediatedAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediatedAccess.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/NonNilArrayFilter.swift" /* NonNilArrayFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonNilArrayFilter.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/QueuedVar.swift" /* QueuedVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuedVar.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/SerializedResourceWrapping.swift" /* SerializedResourceWrapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializedResourceWrapping.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/URL+ExtendedAttributes.swift" /* URL+ExtendedAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ExtendedAttributes.swift"; sourceTree = "<group>"; };
-		"__PBXFileRef_Sources/Data+Compression.swift" /* Data+Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Compression.swift"; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/Errors.swift /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Sources/FileManager+Compression.swift" /* FileManager+Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Compression.swift"; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/ZipDirectoryWrapping.swift /* ZipDirectoryWrapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipDirectoryWrapping.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/ZipFileFormat.swift /* ZipFileFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipFileFormat.swift; sourceTree = "<group>"; };
-		__PBXFileRef_SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig /* SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftFoundationCompressionTests/Compression.swift /* DeflateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeflateTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftFoundationCompressionTests/ZipDirectoryWrappingTests.swift /* ZipDirectoryWrappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipDirectoryWrappingTests.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftFoundationCompressionTests/ZipFileFormatTests.swift /* ZipFileFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipFileFormatTests.swift; sourceTree = "<group>"; };
-		"_____Product_SwiftFoundationCompression" /* SwiftFoundationCompression.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftFoundationCompression.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftFoundationCompressionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_SwiftPatterns" /* SwiftPatterns.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftPatterns.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_10 /* FileManager+Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Compression.swift"; sourceTree = "<group>"; };
+		OBJ_11 /* GZipDataWrapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GZipDataWrapping.swift; sourceTree = "<group>"; };
+		OBJ_12 /* TarDirectoryWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarDirectoryWrapper.swift; sourceTree = "<group>"; };
+		OBJ_13 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		OBJ_14 /* WritingZipFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingZipFiles.swift; sourceTree = "<group>"; };
+		OBJ_15 /* ZipDirectoryWrapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipDirectoryWrapping.swift; sourceTree = "<group>"; };
+		OBJ_16 /* ZipFileFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipFileFormat.swift; sourceTree = "<group>"; };
+		OBJ_19 /* DeflateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeflateTests.swift; sourceTree = "<group>"; };
+		OBJ_20 /* GZipHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GZipHeaderTests.swift; sourceTree = "<group>"; };
+		OBJ_21 /* GunzipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GunzipTests.swift; sourceTree = "<group>"; };
+		OBJ_22 /* WritingZipFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingZipFiles.swift; sourceTree = "<group>"; };
+		OBJ_23 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_24 /* ZipDirectoryWrappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipDirectoryWrappingTests.swift; sourceTree = "<group>"; };
+		OBJ_25 /* ZipFileFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipFileFormatTests.swift; sourceTree = "<group>"; };
+		OBJ_26 /* DerivedData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DerivedData; sourceTree = SOURCE_ROOT; };
+		OBJ_30 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		OBJ_31 /* ChangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSet.swift; sourceTree = "<group>"; };
+		OBJ_32 /* DataExtraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtraction.swift; sourceTree = "<group>"; };
+		OBJ_33 /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
+		OBJ_34 /* LogSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSearch.swift; sourceTree = "<group>"; };
+		OBJ_35 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		OBJ_36 /* MediatedAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediatedAccess.swift; sourceTree = "<group>"; };
+		OBJ_37 /* QueuedVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuedVar.swift; sourceTree = "<group>"; };
+		OBJ_38 /* SerializedResourceWrapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializedResourceWrapping.swift; sourceTree = "<group>"; };
+		OBJ_39 /* URL+ExtendedAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ExtendedAttributes.swift"; sourceTree = "<group>"; };
+		OBJ_40 /* XMLItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLItem.swift; sourceTree = "<group>"; };
+		OBJ_41 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/ben/GitHub/SwiftFoundationCompression/.build/checkouts/SwiftPatterns.git-1119433692948586361/Package.swift"; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_9 /* Data+Compression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Compression.swift"; sourceTree = "<group>"; };
+		"SwiftFoundationCompression::SwiftFoundationCompression::Product" /* SwiftFoundationCompression.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftFoundationCompression.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SwiftFoundationCompression::SwiftFoundationCompressionTests::Product" /* SwiftFoundationCompressionTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftFoundationCompressionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SwiftPatterns::SwiftPatterns::Product" /* SwiftPatterns.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftPatterns.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		"___LinkPhase_SwiftFoundationCompression" /* Frameworks */ = {
+		OBJ_107 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompression /* SwiftPatterns.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_SwiftFoundationCompressionTests" /* Frameworks */ = {
+		OBJ_70 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				_LinkFileRef_SwiftPatterns_via_SwiftFoundationCompressionTests /* SwiftPatterns.framework in Frameworks */,
-				_LinkFileRef_SwiftFoundationCompression_via_SwiftFoundationCompressionTests /* SwiftFoundationCompression.framework in Frameworks */,
+				OBJ_71 /* SwiftFoundationCompression.framework in Frameworks */,
+				OBJ_72 /* SwiftPatterns.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_SwiftPatterns" /* Frameworks */ = {
+		OBJ_89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
+				OBJ_90 /* SwiftPatterns.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		Dependencies_ /* Dependencies */ = {
+		OBJ_17 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				"_______Group_SwiftPatterns" /* SwiftPatterns */,
+				OBJ_18 /* SwiftFoundationCompressionTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_18 /* SwiftFoundationCompressionTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_19 /* DeflateTests.swift */,
+				OBJ_20 /* GZipHeaderTests.swift */,
+				OBJ_21 /* GunzipTests.swift */,
+				OBJ_22 /* WritingZipFiles.swift */,
+				OBJ_23 /* XCTestManifests.swift */,
+				OBJ_24 /* ZipDirectoryWrappingTests.swift */,
+				OBJ_25 /* ZipFileFormatTests.swift */,
+			);
+			name = SwiftFoundationCompressionTests;
+			path = Tests/SwiftFoundationCompressionTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_27 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_28 /* SwiftPatterns 2.1.0 */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		TestProducts_ /* Tests */ = {
+		OBJ_28 /* SwiftPatterns 2.1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				"_____Product_SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests.xctest */,
+				OBJ_29 /* SwiftPatterns */,
+				OBJ_41 /* Package.swift */,
 			);
-			name = Tests;
-			sourceTree = "<group>";
+			name = "SwiftPatterns 2.1.0";
+			sourceTree = SOURCE_ROOT;
 		};
-		"___RootGroup_" = {
+		OBJ_29 /* SwiftPatterns */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Package.swift /* Package.swift */,
-				"_____Configs_" /* Configs */,
-				"_____Sources_" /* Sources */,
-				Dependencies_ /* Dependencies */,
-				"_______Tests_" /* Tests */,
-				"____Products_" /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		"____Products_" /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				TestProducts_ /* Tests */,
-				"_____Product_SwiftPatterns" /* SwiftPatterns.framework */,
-				"_____Product_SwiftFoundationCompression" /* SwiftFoundationCompression.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		"_____Configs_" /* Configs */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig /* SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig */,
-			);
-			name = Configs;
-			sourceTree = "<group>";
-		};
-		"_____Sources_" /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				"_______Group_SwiftFoundationCompression" /* SwiftFoundationCompression */,
-			);
-			name = Sources;
-			sourceTree = "<group>";
-		};
-		"_______Group_SwiftFoundationCompression" /* SwiftFoundationCompression */ = {
-			isa = PBXGroup;
-			children = (
-				"__PBXFileRef_Sources/Data+Compression.swift" /* Data+Compression.swift */,
-				__PBXFileRef_Sources/Errors.swift /* Types.swift */,
-				"__PBXFileRef_Sources/FileManager+Compression.swift" /* FileManager+Compression.swift */,
-				B5B29E871DACC5E600DBF77B /* GZipDataWrapping.swift */,
-				__PBXFileRef_Sources/ZipDirectoryWrapping.swift /* ZipDirectoryWrapping.swift */,
-				__PBXFileRef_Sources/ZipFileFormat.swift /* ZipFileFormat.swift */,
-				B5B29E9A1DB0B3EF00DBF77B /* WritingZipFiles.swift */,
-				B5B29E811DACA20B00DBF77B /* TarDirectoryWrapper.swift */,
-			);
-			name = SwiftFoundationCompression;
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		"_______Group_SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_Tests/SwiftFoundationCompressionTests/Compression.swift /* DeflateTests.swift */,
-				__PBXFileRef_Tests/SwiftFoundationCompressionTests/ZipDirectoryWrappingTests.swift /* ZipDirectoryWrappingTests.swift */,
-				__PBXFileRef_Tests/SwiftFoundationCompressionTests/ZipFileFormatTests.swift /* ZipFileFormatTests.swift */,
-				B5B29E7C1DAC7EC500DBF77B /* I Surrender All.mxl */,
-				B5B29E7D1DAC7EC500DBF77B /* Package.swift.zip */,
-				B5B29E8C1DACF9D700DBF77B /* Package.swift.gz */,
-				B5B29E8A1DACF83800DBF77B /* GZipHeaderTests.swift */,
-				B5B29E8E1DAD48FC00DBF77B /* GunzipTests.swift */,
-				B5B29E9C1DB0BC1F00DBF77B /* WritingZipFiles.swift */,
-			);
-			name = SwiftFoundationCompressionTests;
-			path = Tests/SwiftFoundationCompressionTests;
-			sourceTree = "<group>";
-		};
-		"_______Group_SwiftPatterns" /* SwiftPatterns */ = {
-			isa = PBXGroup;
-			children = (
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Alert.swift" /* Alert.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/ChangeSet.swift" /* ChangeSet.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/DataExtraction.swift" /* DataExtraction.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/DirectoryMonitor.swift" /* DirectoryMonitor.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/Math.swift" /* Math.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/MediatedAccess.swift" /* MediatedAccess.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/NonNilArrayFilter.swift" /* NonNilArrayFilter.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/QueuedVar.swift" /* QueuedVar.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/SerializedResourceWrapping.swift" /* SerializedResourceWrapping.swift */,
-				"__PBXFileRef_Packages/SwiftPatterns-1.0.1/Sources/URL+ExtendedAttributes.swift" /* URL+ExtendedAttributes.swift */,
+				OBJ_30 /* Alert.swift */,
+				OBJ_31 /* ChangeSet.swift */,
+				OBJ_32 /* DataExtraction.swift */,
+				OBJ_33 /* DirectoryMonitor.swift */,
+				OBJ_34 /* LogSearch.swift */,
+				OBJ_35 /* Math.swift */,
+				OBJ_36 /* MediatedAccess.swift */,
+				OBJ_37 /* QueuedVar.swift */,
+				OBJ_38 /* SerializedResourceWrapping.swift */,
+				OBJ_39 /* URL+ExtendedAttributes.swift */,
+				OBJ_40 /* XMLItem.swift */,
 			);
 			name = SwiftPatterns;
-			path = "Packages/SwiftPatterns-1.0.1/Sources";
-			sourceTree = "<group>";
+			path = ".build/checkouts/SwiftPatterns.git-1119433692948586361/Sources/SwiftPatterns";
+			sourceTree = SOURCE_ROOT;
 		};
-		"_______Tests_" /* Tests */ = {
+		OBJ_42 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"_______Group_SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests */,
+				"SwiftFoundationCompression::SwiftFoundationCompressionTests::Product" /* SwiftFoundationCompressionTests.xctest */,
+				"SwiftFoundationCompression::SwiftFoundationCompression::Product" /* SwiftFoundationCompression.framework */,
+				"SwiftPatterns::SwiftPatterns::Product" /* SwiftPatterns.framework */,
 			);
-			name = Tests;
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_17 /* Tests */,
+				OBJ_26 /* DerivedData */,
+				OBJ_27 /* Dependencies */,
+				OBJ_42 /* Products */,
+			);
+			name = "";
 			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* SwiftFoundationCompression */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* SwiftFoundationCompression */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* Data+Compression.swift */,
+				OBJ_10 /* FileManager+Compression.swift */,
+				OBJ_11 /* GZipDataWrapping.swift */,
+				OBJ_12 /* TarDirectoryWrapper.swift */,
+				OBJ_13 /* Types.swift */,
+				OBJ_14 /* WritingZipFiles.swift */,
+				OBJ_15 /* ZipDirectoryWrapping.swift */,
+				OBJ_16 /* ZipFileFormat.swift */,
+			);
+			name = SwiftFoundationCompression;
+			path = Sources/SwiftFoundationCompression;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		"______Target_SwiftFoundationCompression" /* SwiftFoundationCompression */ = {
+		"SwiftFoundationCompression::SwiftFoundationCompression" /* SwiftFoundationCompression */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_SwiftFoundationCompression" /* Build configuration list for PBXNativeTarget "SwiftFoundationCompression" */;
+			buildConfigurationList = OBJ_77 /* Build configuration list for PBXNativeTarget "SwiftFoundationCompression" */;
 			buildPhases = (
-				CompilePhase_SwiftFoundationCompression /* Sources */,
-				"___LinkPhase_SwiftFoundationCompression" /* Frameworks */,
+				OBJ_80 /* Sources */,
+				OBJ_89 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_SwiftPatterns /* PBXTargetDependency */,
+				OBJ_91 /* PBXTargetDependency */,
 			);
 			name = SwiftFoundationCompression;
 			productName = SwiftFoundationCompression;
-			productReference = "_____Product_SwiftFoundationCompression" /* SwiftFoundationCompression.framework */;
+			productReference = "SwiftFoundationCompression::SwiftFoundationCompression::Product" /* SwiftFoundationCompression.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"______Target_SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests */ = {
+		"SwiftFoundationCompression::SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_SwiftFoundationCompressionTests" /* Build configuration list for PBXNativeTarget "SwiftFoundationCompressionTests" */;
+			buildConfigurationList = OBJ_59 /* Build configuration list for PBXNativeTarget "SwiftFoundationCompressionTests" */;
 			buildPhases = (
-				CompilePhase_SwiftFoundationCompressionTests /* Sources */,
-				"___LinkPhase_SwiftFoundationCompressionTests" /* Frameworks */,
-				B5B29E7E1DAC7ED100DBF77B /* Resources */,
+				OBJ_62 /* Sources */,
+				OBJ_70 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				__Dependency_SwiftPatterns /* PBXTargetDependency */,
-				__Dependency_SwiftFoundationCompression /* PBXTargetDependency */,
+				OBJ_73 /* PBXTargetDependency */,
+				OBJ_75 /* PBXTargetDependency */,
 			);
 			name = SwiftFoundationCompressionTests;
 			productName = SwiftFoundationCompressionTests;
-			productReference = "_____Product_SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests.xctest */;
+			productReference = "SwiftFoundationCompression::SwiftFoundationCompressionTests::Product" /* SwiftFoundationCompressionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		"______Target_SwiftPatterns" /* SwiftPatterns */ = {
+		"SwiftFoundationCompression::SwiftPMPackageDescription" /* SwiftFoundationCompressionPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_SwiftPatterns" /* Build configuration list for PBXNativeTarget "SwiftPatterns" */;
+			buildConfigurationList = OBJ_47 /* Build configuration list for PBXNativeTarget "SwiftFoundationCompressionPackageDescription" */;
 			buildPhases = (
-				CompilePhase_SwiftPatterns /* Sources */,
-				"___LinkPhase_SwiftPatterns" /* Frameworks */,
+				OBJ_50 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftFoundationCompressionPackageDescription;
+			productName = SwiftFoundationCompressionPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"SwiftPatterns::SwiftPMPackageDescription" /* SwiftPatternsPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_53 /* Build configuration list for PBXNativeTarget "SwiftPatternsPackageDescription" */;
+			buildPhases = (
+				OBJ_56 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftPatternsPackageDescription;
+			productName = SwiftPatternsPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"SwiftPatterns::SwiftPatterns" /* SwiftPatterns */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_92 /* Build configuration list for PBXNativeTarget "SwiftPatterns" */;
+			buildPhases = (
+				OBJ_95 /* Sources */,
+				OBJ_107 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,117 +343,286 @@
 			);
 			name = SwiftPatterns;
 			productName = SwiftPatterns;
-			productReference = "_____Product_SwiftPatterns" /* SwiftPatterns.framework */;
+			productReference = "SwiftPatterns::SwiftPatterns::Product" /* SwiftPatterns.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		__RootObject_ /* Project object */ = {
+		OBJ_1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
 			};
-			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "SwiftFoundationCompression" */;
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "SwiftFoundationCompression" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = "___RootGroup_";
-			productRefGroup = "____Products_" /* Products */;
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_42 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"______Target_SwiftPatterns" /* SwiftPatterns */,
-				"______Target_SwiftFoundationCompression" /* SwiftFoundationCompression */,
-				"______Target_SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests */,
+				"SwiftFoundationCompression::SwiftPMPackageDescription" /* SwiftFoundationCompressionPackageDescription */,
+				"SwiftPatterns::SwiftPMPackageDescription" /* SwiftPatternsPackageDescription */,
+				"SwiftFoundationCompression::SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests */,
+				"SwiftFoundationCompression::SwiftFoundationCompression" /* SwiftFoundationCompression */,
+				"SwiftPatterns::SwiftPatterns" /* SwiftPatterns */,
+				"SwiftFoundationCompression::SwiftFoundationCompressionPackageTests::ProductTarget" /* SwiftFoundationCompressionPackageTests */,
+				"CZlib::CZlib::ProductTarget" /* CZlib */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		B5B29E7E1DAC7ED100DBF77B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5B29E7F1DAC7EDA00DBF77B /* I Surrender All.mxl in Resources */,
-				B5B29E801DAC7EDA00DBF77B /* Package.swift.zip in Resources */,
-				B5B29E8D1DACF9D700DBF77B /* Package.swift.gz in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		CompilePhase_SwiftFoundationCompression /* Sources */ = {
+		OBJ_50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				"__src_cc_ref_Sources/Data+Compression.swift" /* Data+Compression.swift in Sources */,
-				__src_cc_ref_Sources/Errors.swift /* Types.swift in Sources */,
-				"__src_cc_ref_Sources/FileManager+Compression.swift" /* FileManager+Compression.swift in Sources */,
-				B5B29E9B1DB0B3EF00DBF77B /* WritingZipFiles.swift in Sources */,
-				__src_cc_ref_Sources/ZipDirectoryWrapping.swift /* ZipDirectoryWrapping.swift in Sources */,
-				__src_cc_ref_Sources/ZipFileFormat.swift /* ZipFileFormat.swift in Sources */,
-				B5B29E891DACC73E00DBF77B /* GZipDataWrapping.swift in Sources */,
+				OBJ_51 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_SwiftFoundationCompressionTests /* Sources */ = {
+		OBJ_56 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				B5B29E8F1DAD48FC00DBF77B /* GunzipTests.swift in Sources */,
-				B5B29E8B1DACF83800DBF77B /* GZipHeaderTests.swift in Sources */,
-				__src_cc_ref_Tests/SwiftFoundationCompressionTests/Compression.swift /* DeflateTests.swift in Sources */,
-				B5B29E9D1DB0BC1F00DBF77B /* WritingZipFiles.swift in Sources */,
-				__src_cc_ref_Tests/SwiftFoundationCompressionTests/ZipDirectoryWrappingTests.swift /* ZipDirectoryWrappingTests.swift in Sources */,
-				B5B29E821DACA20B00DBF77B /* TarDirectoryWrapper.swift in Sources */,
-				__src_cc_ref_Tests/SwiftFoundationCompressionTests/ZipFileFormatTests.swift /* ZipFileFormatTests.swift in Sources */,
+				OBJ_57 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_SwiftPatterns /* Sources */ = {
+		OBJ_62 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/Alert.swift" /* Alert.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/ChangeSet.swift" /* ChangeSet.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/DataExtraction.swift" /* DataExtraction.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/DirectoryMonitor.swift" /* DirectoryMonitor.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/Math.swift" /* Math.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/MediatedAccess.swift" /* MediatedAccess.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/NonNilArrayFilter.swift" /* NonNilArrayFilter.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/QueuedVar.swift" /* QueuedVar.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/SerializedResourceWrapping.swift" /* SerializedResourceWrapping.swift in Sources */,
-				"__src_cc_ref_Packages/SwiftPatterns-1.0.1/Sources/URL+ExtendedAttributes.swift" /* URL+ExtendedAttributes.swift in Sources */,
+				OBJ_63 /* DeflateTests.swift in Sources */,
+				OBJ_64 /* GZipHeaderTests.swift in Sources */,
+				OBJ_65 /* GunzipTests.swift in Sources */,
+				OBJ_66 /* WritingZipFiles.swift in Sources */,
+				OBJ_67 /* XCTestManifests.swift in Sources */,
+				OBJ_68 /* ZipDirectoryWrappingTests.swift in Sources */,
+				OBJ_69 /* ZipFileFormatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_81 /* Data+Compression.swift in Sources */,
+				OBJ_82 /* FileManager+Compression.swift in Sources */,
+				OBJ_83 /* GZipDataWrapping.swift in Sources */,
+				OBJ_84 /* TarDirectoryWrapper.swift in Sources */,
+				OBJ_85 /* Types.swift in Sources */,
+				OBJ_86 /* WritingZipFiles.swift in Sources */,
+				OBJ_87 /* ZipDirectoryWrapping.swift in Sources */,
+				OBJ_88 /* ZipFileFormat.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_96 /* Alert.swift in Sources */,
+				OBJ_97 /* ChangeSet.swift in Sources */,
+				OBJ_98 /* DataExtraction.swift in Sources */,
+				OBJ_99 /* DirectoryMonitor.swift in Sources */,
+				OBJ_100 /* LogSearch.swift in Sources */,
+				OBJ_101 /* Math.swift in Sources */,
+				OBJ_102 /* MediatedAccess.swift in Sources */,
+				OBJ_103 /* QueuedVar.swift in Sources */,
+				OBJ_104 /* SerializedResourceWrapping.swift in Sources */,
+				OBJ_105 /* URL+ExtendedAttributes.swift in Sources */,
+				OBJ_106 /* XMLItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		__Dependency_SwiftFoundationCompression /* PBXTargetDependency */ = {
+		OBJ_112 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "______Target_SwiftFoundationCompression" /* SwiftFoundationCompression */;
-			targetProxy = B5B29E7B1DAC7CF700DBF77B /* PBXContainerItemProxy */;
+			target = "SwiftFoundationCompression::SwiftFoundationCompressionTests" /* SwiftFoundationCompressionTests */;
+			targetProxy = B5CA09721F9F5FC400D60D80 /* PBXContainerItemProxy */;
 		};
-		__Dependency_SwiftPatterns /* PBXTargetDependency */ = {
+		OBJ_73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = "______Target_SwiftPatterns" /* SwiftPatterns */;
-			targetProxy = B5B29E7A1DAC7CF700DBF77B /* PBXContainerItemProxy */;
+			target = "SwiftFoundationCompression::SwiftFoundationCompression" /* SwiftFoundationCompression */;
+			targetProxy = B5CA09701F9F5FC300D60D80 /* PBXContainerItemProxy */;
+		};
+		OBJ_75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftPatterns::SwiftPatterns" /* SwiftPatterns */;
+			targetProxy = B5CA09711F9F5FC300D60D80 /* PBXContainerItemProxy */;
+		};
+		OBJ_91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftPatterns::SwiftPatterns" /* SwiftPatterns */;
+			targetProxy = B5CA096F1F9F5FC300D60D80 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		_ReleaseConf_SwiftFoundationCompression /* Release */ = {
+		OBJ_110 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_115 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_116 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+		OBJ_48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/.build/checkouts/CZlib.git-516057984387857014",
+				);
+				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftFoundationCompressionTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftFoundationCompressionTests;
+			};
+			name = Debug;
+		};
+		OBJ_61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/.build/checkouts/CZlib.git-516057984387857014",
+				);
+				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftFoundationCompressionTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftFoundationCompressionTests;
+			};
+			name = Release;
+		};
+		OBJ_78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				HEADER_SEARCH_PATHS = "/Users/ben/GitHub/SwiftFoundationCompression/Packages/CZlib-0.1.1";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/.build/checkouts/CZlib.git-516057984387857014",
+				);
 				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftFoundationCompression_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -402,46 +630,24 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftFoundationCompression;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_VERSION = 3.0;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftFoundationCompression;
 			};
-			name = Release;
+			name = Debug;
 		};
-		_ReleaseConf_SwiftFoundationCompressionTests /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				HEADER_SEARCH_PATHS = "/Users/ben/GitHub/SwiftFoundationCompression/Packages/CZlib-0.1.1";
-				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftFoundationCompressionTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		_ReleaseConf_SwiftPatterns /* Release */ = {
+		OBJ_79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftPatterns_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = SwiftPatterns;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		"___DebugConf_SwiftFoundationCompression" /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				HEADER_SEARCH_PATHS = "/Users/ben/GitHub/SwiftFoundationCompression/Packages/CZlib-0.1.1";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/.build/checkouts/CZlib.git-516057984387857014",
+				);
 				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftFoundationCompression_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -449,31 +655,21 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftFoundationCompression;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftFoundationCompression;
 			};
-			name = Debug;
+			name = Release;
 		};
-		"___DebugConf_SwiftFoundationCompressionTests" /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				HEADER_SEARCH_PATHS = "/Users/ben/GitHub/SwiftFoundationCompression/Packages/CZlib-0.1.1";
-				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftFoundationCompressionTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		"___DebugConf_SwiftPatterns" /* Debug */ = {
+		OBJ_93 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftPatterns_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -481,65 +677,110 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftPatterns;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftPatterns;
 			};
 			name = Debug;
 		};
-		"_____Release_" /* Release */ = {
+		OBJ_94 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig /* SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = SwiftFoundationCompression.xcodeproj/SwiftPatterns_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftPatterns;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftPatterns;
 			};
 			name = Release;
-		};
-		"_______Debug_" /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig /* SwiftFoundationCompression.xcodeproj/Configs/Project.xcconfig */;
-			buildSettings = {
-			};
-			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		"___RootConfs_" /* Build configuration list for PBXProject "SwiftFoundationCompression" */ = {
+		OBJ_109 /* Build configuration list for PBXAggregateTarget "SwiftFoundationCompressionPackageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"_______Debug_" /* Debug */,
-				"_____Release_" /* Release */,
+				OBJ_110 /* Debug */,
+				OBJ_111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		"_______Confs_SwiftFoundationCompression" /* Build configuration list for PBXNativeTarget "SwiftFoundationCompression" */ = {
+		OBJ_114 /* Build configuration list for PBXAggregateTarget "CZlib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_SwiftFoundationCompression" /* Debug */,
-				_ReleaseConf_SwiftFoundationCompression /* Release */,
+				OBJ_115 /* Debug */,
+				OBJ_116 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		"_______Confs_SwiftFoundationCompressionTests" /* Build configuration list for PBXNativeTarget "SwiftFoundationCompressionTests" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "SwiftFoundationCompression" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_SwiftFoundationCompressionTests" /* Debug */,
-				_ReleaseConf_SwiftFoundationCompressionTests /* Release */,
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		"_______Confs_SwiftPatterns" /* Build configuration list for PBXNativeTarget "SwiftPatterns" */ = {
+		OBJ_47 /* Build configuration list for PBXNativeTarget "SwiftFoundationCompressionPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_SwiftPatterns" /* Debug */,
-				_ReleaseConf_SwiftPatterns /* Release */,
+				OBJ_48 /* Debug */,
+				OBJ_49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_53 /* Build configuration list for PBXNativeTarget "SwiftPatternsPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_54 /* Debug */,
+				OBJ_55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_59 /* Build configuration list for PBXNativeTarget "SwiftFoundationCompressionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_60 /* Debug */,
+				OBJ_61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_77 /* Build configuration list for PBXNativeTarget "SwiftFoundationCompression" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_78 /* Debug */,
+				OBJ_79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		OBJ_92 /* Build configuration list for PBXNativeTarget "SwiftPatterns" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_93 /* Debug */,
+				OBJ_94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = __RootObject_ /* Project object */;
+	rootObject = OBJ_1 /* Project object */;
 }

@@ -11,14 +11,23 @@ import XCTest
 
 class GunzipTests: XCTestCase {
 	
-	
 	var sampleData:Data {
 		return "The quick brown fox jumped over the lazy dog. But on the other hand, the lazy dog really isn't up for such an energetic exercise.".data(using: .utf8)!
 	}
+	
+	func fileInTestSource(named:String, withExtension:String)->URL {
+		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+		let bundle:Bundle = Bundle(for:FileFormatTest.self)
+		if let zipURL = bundle.url(forResource: named, withExtension: withExtension) {
+			return zipURL
+		}
+			#endif
+		let path = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+		return path.appendingPathComponent("Tests").appendingPathComponent("SwiftFoundationCompressionTests").appendingPathComponent(named + "." + withExtension)
+	}
 
 	func testGunzip() {
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "Package.swift", withExtension: "gz")!
+		let zipURL = fileInTestSource(named: "Package.swift", withExtension: "gz")
 		let data = try! Data(contentsOf: zipURL)
 		
 		guard let decompressed = try? data.gunzip() else {
@@ -46,8 +55,7 @@ class GunzipTests: XCTestCase {
 	
 	//test re-wrapping gzip
 	func testRegzip() {
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		let zipURL = bundle.url(forResource: "Package.swift", withExtension: "gz")!
+		let zipURL = fileInTestSource(named: "Package.swift", withExtension: "gz")
 		let data = try! Data(contentsOf: zipURL)
 		
 		guard var gzipWrapper = try? GZipDataWrapping(compressedData:data) else {
@@ -67,8 +75,10 @@ class GunzipTests: XCTestCase {
 	}
 	
 	
+	static var allTests = [
+		("testRegzip",testRegzip),
+		("testGzip",testGzip),
+		("testGunzip", testGunzip),
+		]
 	
-	
-	
-
 }
