@@ -15,14 +15,8 @@ import SwiftPatterns
 open class ZipDirectoryWrappingTests : XCTestCase {
 
 	func fileInTestSource(named:String, withExtension:String)->URL {
-		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		if let zipURL = bundle.url(forResource: named, withExtension: withExtension) {
-			return zipURL
-		}
-			#endif
-		let path = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-		return path.appendingPathComponent("Tests").appendingPathComponent("SwiftFoundationCompressionTests").appendingPathComponent(named + "." + withExtension)
+		let dir:URL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+		return dir.appendingPathComponent(named + "." + withExtension)
 	}
 	
 	open func testMusicDirectories() {
@@ -36,11 +30,11 @@ open class ZipDirectoryWrappingTests : XCTestCase {
 			XCTAssertTrue(false)
 			return
 		}
-		guard let container:DataWrapping = metaDir["container.xml"] as? DataWrapping else {
+		guard let _:DataWrapping = metaDir["container.xml"] as? DataWrapping else {
 			XCTAssertTrue(false)
 			return
 		}
-		for (key, file) in zipWrapper.subResources {
+		for (_, file) in zipWrapper.subResources {
 			if let dataWrapping = file as? DataWrapping {
 				let musicData = dataWrapping.contents
 				let asString = String(data:musicData, encoding:.utf8)!

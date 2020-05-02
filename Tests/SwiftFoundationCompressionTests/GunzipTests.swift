@@ -16,14 +16,8 @@ class GunzipTests: XCTestCase {
 	}
 	
 	func fileInTestSource(named:String, withExtension:String)->URL {
-		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		if let zipURL = bundle.url(forResource: named, withExtension: withExtension) {
-			return zipURL
-		}
-			#endif
-		let path = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-		return path.appendingPathComponent("Tests").appendingPathComponent("SwiftFoundationCompressionTests").appendingPathComponent(named + "." + withExtension)
+		let dir:URL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+		return dir.appendingPathComponent(named + "." + withExtension)
 	}
 
 	func testGunzip() {
@@ -36,7 +30,7 @@ class GunzipTests: XCTestCase {
 		}
 		
 		let contents = String(data:decompressed, encoding:.utf8)
-		print(contents)
+		print(contents as Any)
 		//gunzip
 	}
 	
@@ -58,7 +52,7 @@ class GunzipTests: XCTestCase {
 		let zipURL = fileInTestSource(named: "Package.swift", withExtension: "gz")
 		let data = try! Data(contentsOf: zipURL)
 		
-		guard var gzipWrapper = try? GZipDataWrapping(compressedData:data) else {
+		guard let gzipWrapper = try? GZipDataWrapping(compressedData:data) else {
 			XCTAssertTrue(false)
 			return
 		}

@@ -14,14 +14,8 @@ import XCTest
 open class FileFormatTest : XCTestCase {
 	
 	func fileInTestSource(named:String, withExtension:String)->URL {
-		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		if let zipURL = bundle.url(forResource: named, withExtension: withExtension) {
-			return zipURL
-		}
-			#endif
-		let path = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-		return path.appendingPathComponent("Tests").appendingPathComponent("SwiftFoundationCompressionTests").appendingPathComponent(named + "." + withExtension)
+		let dir:URL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+		return dir.appendingPathComponent(named + "." + withExtension)
 	}
 	
 	open func testDiscoverAZipFile() {
@@ -51,9 +45,9 @@ open class FileFormatTest : XCTestCase {
 		}
 		XCTAssertEqual(eocd.numberOfRecords, 3)
 		
-		var entries:[CentralDirectoryEntry] = []
+//		var entries:[CentralDirectoryEntry] = []
 		var entryOffset:Int = eocd.offsetToCentralDirectory
-		for i in 0..<eocd.numberOfRecords {
+		for _ in 0..<eocd.numberOfRecords {
 			guard let entry = try? CentralDirectoryEntry(data:data, at:entryOffset) else {
 				XCTAssertTrue(false)	//unable to create
 				continue
@@ -84,7 +78,7 @@ open class FileFormatTest : XCTestCase {
 			return
 		}
 		guard let firstEntry = owner.centralDirectoryEntries.filter({ (entry) -> Bool in
-			return entry.fileName.hasSuffix("xml") ?? false
+			return entry.fileName.hasSuffix("xml")
 		}).first else {
 			XCTAssertTrue(false)	//unable to create
 			return

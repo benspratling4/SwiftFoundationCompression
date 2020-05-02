@@ -14,14 +14,8 @@ import XCTest
 open class GZipHeaderTests : XCTestCase {
 	
 	func fileInTestSource(named:String, withExtension:String)->URL {
-		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		if let zipURL = bundle.url(forResource: named, withExtension: withExtension) {
-			return zipURL
-		}
-		#endif
-		let path = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-		return path.appendingPathComponent("Tests").appendingPathComponent("SwiftFoundationCompressionTests").appendingPathComponent(named + "." + withExtension)
+		let dir:URL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+		return dir.appendingPathComponent(named + "." + withExtension)
 	}
 	
 	func testHeaderRead() {
@@ -29,7 +23,7 @@ open class GZipHeaderTests : XCTestCase {
 		let data = try! Data(contentsOf: zipURL)
 		
 		guard let wrapper = try? GZipDataWrapping(compressedData:data) else { return }
-		print(wrapper.header?.filename)
+		print(wrapper.header?.filename as Any)
 	}
 	
 	

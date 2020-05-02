@@ -13,23 +13,14 @@ import SwiftPatterns
 class WritingZipFiles: XCTestCase {
 	
 	func fileInTestSource(named:String, withExtension:String)->URL {
-		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-		let bundle:Bundle = Bundle(for:FileFormatTest.self)
-		if let zipURL = bundle.url(forResource: named, withExtension: withExtension) {
-			return zipURL
-		}
-			#endif
-		let path = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-		return path.appendingPathComponent("Tests").appendingPathComponent("SwiftFoundationCompressionTests").appendingPathComponent(named + "." + withExtension)
+		let dir:URL = URL(fileURLWithPath: #file).deletingLastPathComponent()
+		return dir.appendingPathComponent(named + "." + withExtension)
 	}
 
 	func testEmptyZipFile() {
 		let eocd = EndOfCentralDirectoryForWriting(numberOfEntriesInTheCentralDirectory:0, sizeOfTheCentralDirectory:0, offsetOfTheBeginningOfTheCentralDirectoryWithRespectToTheStartingDiskNumber:0)
 		var data:Data = Data()
-		do {
-			try data.append(value:eocd)
-		} catch {
-		}
+		data.append(value:eocd)
 		XCTAssertEqual(data.count, 22)
 		#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 		let url = Bundle(for: WritingZipFiles.self).bundleURL

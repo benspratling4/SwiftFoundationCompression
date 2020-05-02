@@ -75,12 +75,12 @@ extension Data {
 		//do the dual-buffer thing
 		let inBufferMemory:UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: chunkSize)
 		defer {
-			inBufferMemory.deallocate(capacity: chunkSize)
+			inBufferMemory.deallocate()
 		}
 		let inBufferPointer = UnsafeMutableBufferPointer(start: inBufferMemory, count: chunkSize)
 		let outBufferMemory:UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: chunkSize)
 		defer {
-			outBufferMemory.deallocate(capacity: chunkSize)
+			outBufferMemory.deallocate()
 		}
 		
 		//pre-fill the inBuffer
@@ -142,10 +142,13 @@ extension Data {
 	func inflate(progress:CompressionProgressHandler? = nil)throws->Data {
 		//create the first buffer before initializing the stream... because backwards API's are wonderful :(
 		let chunkSize:Int = memoryPageSize
-		var copyBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-		let inputBuffer = UnsafeMutableBufferPointer(start: &copyBuffer, count: chunkSize)
+		let inputBuffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
+		inputBuffer.initialize(repeating: 0)
+		defer {
+			inputBuffer.deallocate()
+		}
 		let availableByteCount:Int = Swift.min(self.count, chunkSize)
-		let copiedByteCount:Int = self.copyBytes(to: inputBuffer, from: 0..<availableByteCount)
+		_ = self.copyBytes(to: inputBuffer, from: 0..<availableByteCount)
 		var aStream:z_stream = z_stream(next_in: inputBuffer.baseAddress, avail_in: UInt32(availableByteCount), total_in: 0, next_out: nil, avail_out: 0, total_out: 0, msg: nil, state: nil, zalloc: nil, zfree: nil, opaque: nil, data_type: 0, adler: 0, reserved: 0)
 		let windowBits:Int32 = -15 //some kind of magic value
 		let initResult:Int32 = inflateInit2_(&aStream, windowBits, zlibVersion(), Int32(MemoryLayout<z_stream>.size))
@@ -158,9 +161,11 @@ extension Data {
 			inflateEnd(&aStream)
 		}
 		//prepare an output buffer
-		var decompressBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-		let outputBuffer = UnsafeMutableBufferPointer(start: &decompressBuffer, count: chunkSize)
-		
+		let outputBuffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
+		outputBuffer.initialize(repeating: 0)
+		defer {
+			outputBuffer.deallocate()
+		}
 		var outputData:Data = Data()
 		let floatCount:Float32 = Float32(self.count)
 		var streamStatus:Int32 = Z_OK
@@ -202,10 +207,13 @@ extension Data {
 	func gunzip(progress:CompressionProgressHandler? = nil)throws->Data {
 		//create the first buffer before initializing the stream... because backwards API's are wonderful :(
 		let chunkSize:Int = memoryPageSize
-		var copyBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-		let inputBuffer = UnsafeMutableBufferPointer(start: &copyBuffer, count: chunkSize)
+		let inputBuffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
+		inputBuffer.initialize(repeating: 0)
+		defer {
+			inputBuffer.deallocate()
+		}
 		let availableByteCount:Int = Swift.min(self.count, chunkSize)
-		let copiedByteCount:Int = self.copyBytes(to: inputBuffer, from: 0..<availableByteCount)
+		_ = self.copyBytes(to: inputBuffer, from: 0..<availableByteCount)
 		var aStream:z_stream = z_stream(next_in: inputBuffer.baseAddress, avail_in: UInt32(availableByteCount), total_in: 0, next_out: nil, avail_out: 0, total_out: 0, msg: nil, state: nil, zalloc: nil, zfree: nil, opaque: nil, data_type: 0, adler: 0, reserved: 0)
 		let windowBits:Int32 = 15 | 16 //some kind of magic value
 		let initResult:Int32 = inflateInit2_(&aStream, windowBits, zlibVersion(), Int32(MemoryLayout<z_stream>.size))
@@ -218,9 +226,11 @@ extension Data {
 			inflateEnd(&aStream)
 		}
 		//prepare an output buffer
-		var decompressBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-		let outputBuffer = UnsafeMutableBufferPointer(start: &decompressBuffer, count: chunkSize)
-		
+		let outputBuffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
+		outputBuffer.initialize(repeating: 0)
+		defer {
+			outputBuffer.deallocate()
+		}
 		var outputData:Data = Data()
 		let floatCount:Float32 = Float32(self.count)
 		var streamStatus:Int32 = Z_OK
@@ -265,11 +275,14 @@ extension Data {
 		let memoryLevel:Int32 = 8	//how much internal memory is used
 		
 		//do the dual-buffer thing
-		var inBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-		let inBufferPointer = UnsafeMutableBufferPointer(start: &inBuffer, count: chunkSize)
-		var outBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-		let outBufferPointer = UnsafeMutableBufferPointer(start: &outBuffer, count: chunkSize)
-		
+		let inBufferPointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
+		inBufferPointer.initialize(repeating: 0)
+		let outBufferPointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
+		outBufferPointer.initialize(repeating: 0)
+		defer {
+			inBufferPointer.deallocate()
+			outBufferPointer.deallocate()
+		}
 		//pre-fill the inBuffer
 		let countInBuffer:Int = Swift.min(chunkSize, self.count)
 		let copiedByteCount:Int = self.copyBytes(to: inBufferPointer, from: 0..<countInBuffer)
@@ -314,9 +327,8 @@ extension Data {
 			}
 			//always copy out all written bytes
 			let newOutByteCount:Int = Int(stream.total_out) - previousTotalOut
-			outData.append(&outBuffer, count: newOutByteCount)
+			outData.append(outBufferPointer.baseAddress!, count: newOutByteCount)
 		}
-		
 		return outData
 	}
 	

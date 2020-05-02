@@ -191,11 +191,16 @@ func gzip(data:Data, named:String)throws->Data {
 	let memoryLevel:Int32 = 8	//how much internal memory is used
 	
 	//do the dual-buffer thing
-	var inBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-	let inBufferPointer = UnsafeMutableBufferPointer(start: &inBuffer, count: chunkSize)
-	var outBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
-	let outBufferPointer = UnsafeMutableBufferPointer(start: &outBuffer, count: chunkSize)
-	
+	let inBufferPointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
+	inBufferPointer.initialize(repeating: 0)
+	defer {
+		inBufferPointer.deallocate()
+	}
+	let outBufferPointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
+	outBufferPointer.initialize(repeating: 0)
+	defer {
+		outBufferPointer.deallocate()
+	}
 	//pre-fill the inBuffer
 	let countInBuffer:Int = Swift.min(chunkSize, data.count)
 	let copiedByteCount:Int = data.copyBytes(to: inBufferPointer, from: 0..<countInBuffer)
@@ -225,14 +230,21 @@ func gzip(data:Data, named:String)throws->Data {
 	let time:UInt = UInt(timeDiff)
 	let fileNameData:Data = named.data(using: .isoLatin1) ?? Data()
 	var dataBytes = [UInt8](repeating:0, count:fileNameData.count + 1)
-	let _ = fileNameData.copyBytes(to: UnsafeMutableBufferPointer(start:&dataBytes, count:fileNameData.count))
-	var header:gz_header = gz_header(text: 0, time: time, xflags: 0, os: 0, extra: nil, extra_len: 0, extra_max: 0, name: &dataBytes, name_max: UInt32(fileNameData.count + 1), comment: nil, comm_max: 0, hcrc: 0, done: 0)
-	
-	streamStatus = deflateSetHeader(&stream, &header)
+	let _:Int = dataBytes.withUnsafeMutableBytes { pointer in
+		return fileNameData.copyBytes(to: pointer, count:fileNameData.count)
+	}
+	streamStatus = dataBytes.withUnsafeMutableBytes { unsafemutablerawbufferpointer in
+		var header:gz_header = gz_header(text: 0, time: time, xflags: 0, os: 0, extra: nil, extra_len: 0, extra_max: 0
+			,name: unsafemutablerawbufferpointer.bindMemory(to: UInt8.self).baseAddress
+			,name_max: UInt32(fileNameData.count + 1)
+			,comment: nil
+			,comm_max: 0
+			,hcrc: 0, done: 0)
+		return deflateSetHeader(&stream, &header)
+	}
 	if streamStatus != Z_OK {
 		throw CompressionError.fail(streamStatus)
 	}
-	
 	//loop over buffers
 	var outData:Data = Data()
 	
@@ -254,7 +266,7 @@ func gzip(data:Data, named:String)throws->Data {
 		}
 		//always copy out all written bytes
 		let newOutByteCount:Int = Int(stream.total_out) - previousTotalOut
-		outData.append(&outBuffer, count: newOutByteCount)
+		outData.append(outBufferPointer.baseAddress!, count: newOutByteCount)
 	}
 	
 	return outData
