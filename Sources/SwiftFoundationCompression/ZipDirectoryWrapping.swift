@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CZlib
+import zlib
 import SwiftPatterns
 
 /**

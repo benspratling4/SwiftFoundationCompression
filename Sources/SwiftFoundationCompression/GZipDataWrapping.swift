@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftPatterns
-import CZlib
+import zlib
 
 ///the purpose of GZip is to zip a "file", so it makes no sense to use .gzip on Data, it's just deflate with file info wrapped around it
 public class GZipDataWrapping : DataWrapping {
@@ -21,55 +21,62 @@ public class GZipDataWrapping : DataWrapping {
 		let gHeader = try GZipHeader(data: compressedData)
 		header = gHeader
 		let subData:Data = compressedData.subdata(in:gHeader.offsetToCompressedData..<compressedData.count)
-		let decompressed:Data = try subData.decompressed(using: .deflate)
-		wrapper = FileWrapping(data: decompressed, name: gHeader.filename ?? "")
+		let decompressed = try subData.decompressed(using: .deflate)
+		wrapper = FileWrapper(regularFileWithContents: decompressed)
+		wrapper.preferredFilename = gHeader.filename
 	}
 	
 	
 	/// the serializedData will be a .gz file
 	public init(_ dataWrapping:DataWrapping)throws {
-		wrapper = dataWrapping
+		wrapper = FileWrapper(regularFileWithContents: dataWrapping.contents)
+		wrapper.preferredFilename = dataWrapping.lastPathComponent
 	}
 	
 	weak public var parentResourceWrapper:SubResourceWrapping?
 	
 	public var lastPathComponent: String {
 		get {
-			return wrapper.lastPathComponent
+			return wrapper.preferredFilename ?? ""
 		}
 		set {
 			parentResourceWrapper?.child(named: lastPathComponent, changedNameTo: newValue)
-			wrapper.lastPathComponent = lastPathComponent
+			wrapper.preferredFilename = newValue
 		}
 	}
 	
 	public var contents: Data {
 		get {
-			return wrapper.contents
+			return wrapper.regularFileContents ?? Data()
 		}
 		set {
-			wrapper = FileWrapping(data: newValue, name: lastPathComponent)
+			let newWrapper = FileWrapper(regularFileWithContents:newValue)
+			newWrapper.preferredFilename = wrapper.preferredFilename
+			wrapper = newWrapper
 		}
 	}
 	
 	public var serializedRepresentation: Data {
-		return (try? gzip(data: wrapper.contents, named: wrapper.lastPathComponent)) ?? Data()
+		return (try? gzip(data: wrapper.regularFileContents!, named: wrapper.preferredFilename ?? "")) ?? Data()
 	}
 	
-	fileprivate var wrapper:DataWrapping
+	fileprivate var wrapper:FileWrapper
 	
 	
-	private init(regularFileWrapper:DataWrapping) {
+	private init(regularFileWrapper:FileWrapper) {
 		self.wrapper = regularFileWrapper
 	}
 
 	
-	public convenience init?(wrapper:DataWrapping) {
+	///returns nil if the file wrapper is not a regular file
+	public convenience init?(wrapper:FileWrapper) {
+		if !wrapper.isRegularFile { return nil }
 		self.init(regularFileWrapper:wrapper)
 	}
 	
 	public convenience init(data:Data, name:String) {
-		let wrapper = FileWrapping(data:data, name:name)
+		let wrapper = FileWrapper(regularFileWithContents:data)
+		wrapper.preferredFilename = name
 		self.init(wrapper:wrapper)!
 	}
 	
@@ -191,31 +198,26 @@ func gzip(data:Data, named:String)throws->Data {
 	let memoryLevel:Int32 = 8	//how much internal memory is used
 	
 	//do the dual-buffer thing
-	let inBufferPointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
-	inBufferPointer.initialize(repeating: 0)
-	defer {
-		inBufferPointer.deallocate()
-	}
-	let outBufferPointer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: chunkSize)
-	outBufferPointer.initialize(repeating: 0)
-	defer {
-		outBufferPointer.deallocate()
-	}
+	var inBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
+	let inBufferPointer = UnsafeMutableBufferPointer(start: &inBuffer, count: chunkSize)
+	var outBuffer:[UInt8] = [UInt8](repeating:0, count:chunkSize)
+	let outBufferPointer = UnsafeMutableBufferPointer(start: &outBuffer, count: chunkSize)
+	
 	//pre-fill the inBuffer
 	let countInBuffer:Int = Swift.min(chunkSize, data.count)
 	let copiedByteCount:Int = data.copyBytes(to: inBufferPointer, from: 0..<countInBuffer)
 	
 	//init the stream
 	var stream = z_stream(next_in: inBufferPointer.baseAddress,
-	                      avail_in: UInt32(copiedByteCount),
-	                      total_in: 0, next_out: nil, avail_out: 0,
-	                      total_out: 0, msg: nil, state: nil, zalloc: nil,
-	                      zfree: nil, opaque: nil, data_type: 0, adler: 0,
-	                      reserved: 0)
+						  avail_in: UInt32(copiedByteCount),
+						  total_in: 0, next_out: nil, avail_out: 0,
+						  total_out: 0, msg: nil, state: nil, zalloc: nil,
+						  zfree: nil, opaque: nil, data_type: 0, adler: 0,
+						  reserved: 0)
 	let windowBits:Int32 = MAX_WBITS | 16//(method == "gzip") ? MAX_WBITS + 16 : MAX_WBITS
 	let result = deflateInit2_(&stream, compressionLevel, Z_DEFLATED,
-	                           windowBits, memoryLevel, strategy,
-	                           ZLIB_VERSION, Int32(MemoryLayout<z_stream>.size))
+							   windowBits, memoryLevel, strategy,
+							   ZLIB_VERSION, Int32(MemoryLayout<z_stream>.size))
 	//check for init errors
 	if result != Z_OK {
 		throw CompressionError.fail(result)
@@ -230,21 +232,14 @@ func gzip(data:Data, named:String)throws->Data {
 	let time:UInt = UInt(timeDiff)
 	let fileNameData:Data = named.data(using: .isoLatin1) ?? Data()
 	var dataBytes = [UInt8](repeating:0, count:fileNameData.count + 1)
-	let _:Int = dataBytes.withUnsafeMutableBytes { pointer in
-		return fileNameData.copyBytes(to: pointer, count:fileNameData.count)
-	}
-	streamStatus = dataBytes.withUnsafeMutableBytes { unsafemutablerawbufferpointer in
-		var header:gz_header = gz_header(text: 0, time: time, xflags: 0, os: 0, extra: nil, extra_len: 0, extra_max: 0
-			,name: unsafemutablerawbufferpointer.bindMemory(to: UInt8.self).baseAddress
-			,name_max: UInt32(fileNameData.count + 1)
-			,comment: nil
-			,comm_max: 0
-			,hcrc: 0, done: 0)
-		return deflateSetHeader(&stream, &header)
-	}
+	let _ = fileNameData.copyBytes(to: UnsafeMutableBufferPointer(start:&dataBytes, count:fileNameData.count))
+	var header:gz_header = gz_header(text: 0, time: time, xflags: 0, os: 0, extra: nil, extra_len: 0, extra_max: 0, name: &dataBytes, name_max: UInt32(fileNameData.count + 1), comment: nil, comm_max: 0, hcrc: 0, done: 0)
+	
+	streamStatus = deflateSetHeader(&stream, &header)
 	if streamStatus != Z_OK {
 		throw CompressionError.fail(streamStatus)
 	}
+	
 	//loop over buffers
 	var outData:Data = Data()
 	
@@ -259,14 +254,14 @@ func gzip(data:Data, named:String)throws->Data {
 		stream.avail_out = UInt32(chunkSize)
 		//actual deflation
 		let previousTotalOut:Int = Int(stream.total_out)
-		streamStatus = CZlib.deflate(&stream, copiedByteCount > 0 ? Z_NO_FLUSH : Z_FINISH)
+		streamStatus = zlib.deflate(&stream, copiedByteCount > 0 ? Z_NO_FLUSH : Z_FINISH)
 		//check for errors
 		if streamStatus != Z_OK && streamStatus != Z_STREAM_END  && streamStatus != Z_BUF_ERROR {
 			throw CompressionError.fail(streamStatus)
 		}
 		//always copy out all written bytes
 		let newOutByteCount:Int = Int(stream.total_out) - previousTotalOut
-		outData.append(outBufferPointer.baseAddress!, count: newOutByteCount)
+		outData.append(&outBuffer, count: newOutByteCount)
 	}
 	
 	return outData

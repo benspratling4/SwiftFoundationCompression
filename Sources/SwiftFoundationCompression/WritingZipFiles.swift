@@ -112,8 +112,8 @@ extension ZipWriter {
 		}
 		let sizeOfCentralDirectory:UInt32 = UInt32(currentByteCount - centralDirectoryOffset)
 		let eocd = EndOfCentralDirectoryForWriting(numberOfEntriesInTheCentralDirectory: UInt16(headers.count),
-		                                           sizeOfTheCentralDirectory: sizeOfCentralDirectory,
-		                                           offsetOfTheBeginningOfTheCentralDirectoryWithRespectToTheStartingDiskNumber: UInt32(centralDirectoryOffset))
+												   sizeOfTheCentralDirectory: sizeOfCentralDirectory,
+												   offsetOfTheBeginningOfTheCentralDirectoryWithRespectToTheStartingDiskNumber: UInt32(centralDirectoryOffset))
 		append(eocd)
 	}
 }

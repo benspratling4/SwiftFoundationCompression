@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftPatterns",
+        "repositoryURL": "https://github.com/benspratling4/SwiftPatterns.git",
+        "state": {
+          "branch": null,
+          "revision": "c6928cdadb29e4e20385a5a4c573190ab9838948",
+          "version": "3.2.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
