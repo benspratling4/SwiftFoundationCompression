@@ -1,14 +1,15 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 import PackageDescription
 let package = Package(
 	name: "SwiftFoundationCompression",
 	products: [
 		.library(
 			name: "SwiftFoundationCompression",
+			type:.dynamic,
 			targets: ["SwiftFoundationCompression"]),
 		],
 	dependencies: [
-		.package(url: "https://github.com/benspratling4/SwiftPatterns.git", from:"3.0.0"),
+		.package(url: "https://github.com/benspratling4/SwiftPatterns.git", from:"4.0.0"),
 	],
 	targets:[
 		.target(
